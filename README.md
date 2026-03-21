@@ -1,4 +1,5 @@
 # GCS
+
 GCS Javi Patas Compra un Dominio por un céntimo esta vez si punto com
 
 # Esquema
@@ -14,16 +15,15 @@ erDiagram
     timestamp created_at
   }
 
-  AUTO {
+  COCHE {
     uuid id PK
-    string nombre
+    string nomenclatura
     string equipo_f1
     string temporada
     string descripcion
     decimal precio_base
     string imagen_url
     boolean es_base
-    string estado
     decimal precio_total
     uuid usuario_id FK
     timestamp created_at
@@ -53,6 +53,8 @@ erDiagram
     int potencia_cv
     string combustible
     decimal cilindrada
+    string fabricante
+    string tipo
   }
 
   PINTURA {
@@ -69,11 +71,12 @@ erDiagram
     string tipo
     string material
     decimal dureza
+    string eje
   }
 
-  AUTO_PIEZA {
+  COCHE_PIEZA {
     uuid id PK
-    uuid auto_id FK
+    uuid coche_id FK
     uuid pieza_id FK
     int cantidad
     string notas
@@ -82,7 +85,7 @@ erDiagram
   SOLICITUD_PIEZA {
     uuid id PK
     uuid usuario_id FK
-    uuid auto_id FK
+    uuid coche_id FK
     string descripcion
     string estado
     string respuesta_admin
@@ -93,7 +96,7 @@ erDiagram
   VENTA {
     uuid id PK
     uuid usuario_id FK
-    uuid auto_id FK
+    uuid coche_id FK
     decimal monto_total
     string estado_pago
     string metodo_pago
@@ -103,25 +106,26 @@ erDiagram
   RESENIA {
     uuid id PK
     uuid usuario_id FK
-    uuid auto_id FK
+    uuid coche_id FK
     int puntuacion
     string comentario
     timestamp created_at
   }
 
-  USUARIO ||--o{ AUTO : "crea / personaliza"
+  USUARIO ||--o{ COCHE : "crea / personaliza"
   USUARIO ||--o{ SOLICITUD_PIEZA : "solicita"
   USUARIO ||--o{ VENTA : "realiza"
   USUARIO ||--o{ RESENIA : "escribe"
 
-  AUTO ||--o{ AUTO_PIEZA : "contiene"
-  AUTO ||--|| VENTA : "se vende en"
-  AUTO ||--o{ SOLICITUD_PIEZA : "incluye"
-  AUTO ||--o{ RESENIA : "recibe"
+  COCHE ||--o{ COCHE_PIEZA : "contiene"
+  COCHE ||--|| VENTA : "se vende en"
+  COCHE ||--o{ SOLICITUD_PIEZA : "incluye"
+  COCHE ||--o{ RESENIA : "recibe"
 
-  PIEZA ||--o{ AUTO_PIEZA : "usada en"
+  PIEZA ||--o{ COCHE_PIEZA : "usada en"
   PIEZA ||--o| AERODINAMICA : "tiene"
   PIEZA ||--o| MOTOR : "tiene"
   PIEZA ||--o| PINTURA : "tiene"
   PIEZA ||--o| SUSPENSION : "tiene"
 ```
+
