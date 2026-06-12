@@ -1,0 +1,133 @@
+.register-shell {
+  --background: radial-gradient(circle at 70% 20%, rgba(225, 6, 0, 0.14), transparent 32%),
+    linear-gradient(135deg, #09090b 0%, #18181b 52%, #131313 100%);
+}
+
+.register-layout {
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 440px;
+  gap: 48px;
+  align-items: center;
+  padding: clamp(24px, 5vw, 72px);
+}
+
+.brand-panel h1 {
+  margin: 0;
+  color: #ffffff;
+  font-family: var(--gcs-display-font);
+  font-size: clamp(44px, 7vw, 96px);
+  font-weight: 900;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.kicker,
+.card-heading p {
+  margin: 0 0 14px;
+  color: #29dec9;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.lead {
+  max-width: 620px;
+  color: rgba(228, 225, 238, 0.76);
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.status-strip {
+  display: inline-flex;
+  gap: 12px;
+  margin-top: 28px;
+  padding: 12px 16px;
+  border: 1px solid rgba(41, 222, 201, 0.34);
+  background: rgba(24, 24, 27, 0.78);
+  color: #e4e1ee;
+}
+
+.status-strip span {
+  color: #71717a;
+}
+
+.register-card {
+  padding: 28px;
+  border: 1px solid rgba(228, 225, 238, 0.12);
+  border-radius: 8px;
+  background: rgba(24, 24, 27, 0.9);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.card-heading {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.system-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #29dec9;
+  box-shadow: 0 0 20px rgba(41, 222, 201, 0.72);
+}
+
+h2 {
+  margin: 0 0 24px;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+ion-item {
+  --background: rgba(9, 9, 11, 0.7);
+  --border-radius: 8px;
+  --color: #ffffff;
+  --highlight-color-focused: #29dec9;
+  margin-bottom: 14px;
+  border: 1px solid rgba(228, 225, 238, 0.12);
+  border-radius: 8px;
+}
+
+ion-label {
+  --color: #a1a1aa;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+ion-button {
+  --background: #e10600;
+  --background-hover: #ef4444;
+  --border-radius: 4px;
+  --box-shadow: none;
+  height: 50px;
+  margin-top: 18px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.secondary-action {
+  --background: transparent;
+  --background-hover: rgba(41, 222, 201, 0.08);
+  --color: #29dec9;
+  --border-color: rgba(41, 222, 201, 0.34);
+  --border-style: solid;
+  --border-width: 1px;
+  margin-top: 10px;
+}
+
+.error {
+  margin: 8px 0 0;
+  color: #ffb4ab;
+  font-size: 14px;
+}
+
+@media (max-width: 860px) {
+  .register-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}

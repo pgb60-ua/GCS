@@ -1,0 +1,12 @@
+.loading {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-spinner {
+  width: 18px;
+  height: 18px;
+  color: #ffffff;
+}

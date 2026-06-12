@@ -1,0 +1,55 @@
+<ion-content [fullscreen]="true" class="login-shell">
+  <main class="login-layout">
+    <section class="brand-panel">
+      <p class="kicker">GCS Engineering</p>
+      <h1>Kinetic Lab</h1>
+      <p class="lead">Acceso al configurador tecnico de monoplazas, catalogo y panel de trabajo.</p>
+      <div class="status-strip">
+        <span>API</span>
+        <strong>localhost:8080</strong>
+      </div>
+    </section>
+
+    <form class="login-card" (ngSubmit)="submit()">
+      <div class="card-heading">
+        <span class="system-dot"></span>
+        <p>AUTH MODULE</p>
+      </div>
+
+      <h2>Iniciar sesion</h2>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          autocomplete="email"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          autocomplete="current-password"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <ion-button expand="block" type="submit" [disabled]="loading">
+        <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+        <span *ngIf="!loading">Entrar</span>
+      </ion-button>
+
+      <ion-button class="secondary-action" expand="block" fill="clear" routerLink="/registro" type="button">
+        Crear cuenta
+      </ion-button>
+    </form>
+  </main>
+</ion-content>

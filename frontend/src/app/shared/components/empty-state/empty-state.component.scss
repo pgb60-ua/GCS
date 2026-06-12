@@ -1,0 +1,37 @@
+.empty-state {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 24px;
+  border: 1px solid rgba(228, 225, 238, 0.12);
+  border-radius: 8px;
+  background: rgba(24, 24, 27, 0.78);
+}
+
+.empty-icon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  place-items: center;
+  border-radius: 8px;
+  background: #e10600;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+h2 {
+  margin: 0 0 8px;
+  color: #ffffff;
+}
+
+p {
+  margin: 0;
+  color: rgba(228, 225, 238, 0.68);
+}
+
+@media (max-width: 780px) {
+  .empty-state {
+    align-items: flex-start;
+  }
+}

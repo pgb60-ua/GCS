@@ -1,0 +1,12 @@
+.gcs-toolbar {
+  --background: #13131b;
+  --border-color: rgba(228, 225, 238, 0.12);
+  --color: #ffffff;
+}
+
+ion-title {
+  color: #e10600;
+  font-family: var(--gcs-display-font);
+  font-weight: 900;
+  text-transform: uppercase;
+}
