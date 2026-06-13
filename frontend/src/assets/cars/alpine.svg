@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#00061a"/>
+  <rect width="800" height="6" y="0" fill="#0090FF"/>
+  <rect width="800" height="6" y="444" fill="#0090FF"/>
+  <text x="400" y="180" font-family="Arial Black, sans-serif" font-size="96" font-weight="900" fill="#0090FF" text-anchor="middle" letter-spacing="8">A523</text>
+  <text x="400" y="270" font-family="Arial, sans-serif" font-size="28" font-weight="400" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="4">ALPINE · 2023</text>
+  <line x1="160" y1="310" x2="640" y2="310" stroke="#0090FF" stroke-width="1" opacity="0.4"/>
+  <text x="400" y="350" font-family="Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.25)" text-anchor="middle" letter-spacing="6">BWT ALPINE F1 TEAM</text>
+</svg>
