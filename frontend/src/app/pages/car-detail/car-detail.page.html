@@ -1,0 +1,52 @@
+<app-header title="Detalle"></app-header>
+
+<ion-content [fullscreen]="true" class="detail-shell">
+  <main class="detail-layout">
+    <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+    <app-empty-state
+      *ngIf="error && !loading"
+      icon="!"
+      title="Error al cargar el coche"
+      message="No se pudo conectar con el servidor. Comprueba que el backend esta activo."
+    ></app-empty-state>
+
+    <ng-container *ngIf="car && !loading">
+      <div class="back-nav">
+        <ion-button fill="clear" routerLink="/catalogo" class="back-btn">
+          <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+          Catalogo
+        </ion-button>
+      </div>
+
+      <article class="car-detail-card">
+        <div class="car-image-wrap">
+          <img
+            [src]="car.imagenUrl || 'assets/shapes.svg'"
+            [alt]="car.nomenclatura"
+            class="car-image"
+            (error)="$any($event.target).src='assets/shapes.svg'"
+          />
+        </div>
+
+        <div class="car-info">
+          <p class="kicker">{{ car.equipoF1 }}</p>
+          <h1>{{ car.nomenclatura }}</h1>
+          <p class="season-badge">Temporada {{ car.temporada }}</p>
+          <p class="description">{{ car.descripcion }}</p>
+
+          <div class="price-block">
+            <span class="price-label">Precio base</span>
+            <span class="price-value">{{ car.precioBase | number:'1.0-0' }} €</span>
+          </div>
+
+          <div class="detail-actions">
+            <ion-button expand="block" class="cta-btn" routerLink="/catalogo">
+              Volver al catalogo
+            </ion-button>
+          </div>
+        </div>
+      </article>
+    </ng-container>
+  </main>
+</ion-content>

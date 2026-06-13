@@ -13,7 +13,12 @@ const routes: Routes = [
   },
   {
     path: 'catalogo',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'coches/:id',
+    loadChildren: () => import('./pages/car-detail/car-detail.module').then(m => m.CarDetailModule),
     canActivate: [AuthGuard]
   },
   {
