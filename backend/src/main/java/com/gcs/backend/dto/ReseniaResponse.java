@@ -1,8 +1,10 @@
 package com.gcs.backend.dto;
 
+import java.sql.Timestamp;
 import java.util.UUID;
-import jdk.jfr.Timestamp;
+import lombok.Builder;
 
+@Builder
 public record ReseniaResponse(
     UUID id,
     UUID usuarioId,

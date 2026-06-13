@@ -1,14 +1,16 @@
 package com.gcs.backend.controller;
 
+import com.gcs.backend.dto.ReseniaRequest;
+import com.gcs.backend.dto.ReseniaResponse;
+import com.gcs.backend.dto.ResumenReseniasResponse;
 import com.gcs.backend.model.Resenia;
 import com.gcs.backend.service.ReseniaService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/resenias")
@@ -18,23 +20,28 @@ public class ReseniaController {
     private ReseniaService service;
 
     @GetMapping
-    public List<Resenia> getAll() {
+    public List<ReseniaResponse> getAll() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Resenia> getById(@PathVariable UUID id) {
-        Optional<Resenia> entity = service.findById(id);
-        return entity.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<ReseniaResponse> getById(@PathVariable UUID id) {
+        Optional<ReseniaResponse> entity = service.findById(id);
+        return entity
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Resenia create(@RequestBody Resenia entity) {
+    public Resenia create(@RequestBody ReseniaRequest entity) {
         return service.save(entity);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Resenia> update(@PathVariable UUID id, @RequestBody Resenia entity) {
+    public ResponseEntity<ReseniaResponse> update(
+        @PathVariable UUID id,
+        @RequestBody ReseniaRequest entity
+    ) {
         if (!service.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
         }
