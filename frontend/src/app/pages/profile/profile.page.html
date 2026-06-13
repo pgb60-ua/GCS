@@ -1,4 +1,12 @@
-<app-header title="Mi perfil"></app-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/catalogo"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Mi perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content [fullscreen]="true" class="profile-shell">
   <main class="profile-layout">
@@ -29,7 +37,11 @@
 
           <ion-item lines="none">
             <ion-label position="stacked">Email</ion-label>
-            <ion-input [(ngModel)]="formEmail" name="formEmail" type="email"></ion-input>
+            <ion-input
+              [(ngModel)]="formEmail"
+              name="formEmail"
+              type="email"
+            ></ion-input>
           </ion-item>
 
           <ion-item lines="none">
@@ -45,10 +57,19 @@
           <p class="feedback error" *ngIf="errorMessage">{{ errorMessage }}</p>
           <p class="feedback success" *ngIf="saveMessage">{{ saveMessage }}</p>
 
-          <ion-button expand="block" (click)="saveProfile()" [disabled]="saveLoading">
+          <ion-button
+            expand="block"
+            (click)="saveProfile()"
+            [disabled]="saveLoading"
+          >
             {{ saveLoading ? 'Guardando...' : 'Guardar cambios' }}
           </ion-button>
-          <ion-button expand="block" fill="outline" class="logout-btn" (click)="logout()">
+          <ion-button
+            expand="block"
+            fill="outline"
+            class="logout-btn"
+            (click)="logout()"
+          >
             Cerrar sesion
           </ion-button>
         </article>
@@ -73,7 +94,9 @@
                 <span class="stars">{{ getStars(review.puntuacion) }}</span>
               </div>
               <p class="review-comment">{{ review.comentario }}</p>
-              <p class="review-date">{{ review.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
+              <p class="review-date">
+                {{ review.createdAt | date:'dd/MM/yyyy HH:mm' }}
+              </p>
             </article>
           </div>
         </article>

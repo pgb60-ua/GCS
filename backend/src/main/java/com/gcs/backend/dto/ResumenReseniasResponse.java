@@ -6,6 +6,6 @@ import lombok.Builder;
 @Builder
 public record ResumenReseniasResponse(
     UUID cocheId,
-    Integer media,
+    Double media,
     Integer totalResenias
 ) {}

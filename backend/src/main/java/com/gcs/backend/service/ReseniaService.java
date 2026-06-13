@@ -3,28 +3,43 @@ package com.gcs.backend.service;
 import com.gcs.backend.dto.ReseniaRequest;
 import com.gcs.backend.dto.ReseniaResponse;
 import com.gcs.backend.dto.ResumenReseniasResponse;
+import com.gcs.backend.exception.BadRequestException;
+import com.gcs.backend.exception.ResourceNotFoundException;
 import com.gcs.backend.model.Coche;
 import com.gcs.backend.model.Resenia;
 import com.gcs.backend.model.Usuario;
+import com.gcs.backend.repository.CocheRepository;
 import com.gcs.backend.repository.ReseniaRepository;
+import com.gcs.backend.repository.UsuarioRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ReseniaService {
 
-    @Autowired
-    private ReseniaRepository repository;
+    private final ReseniaRepository repository;
+    private final UsuarioRepository usuarioRepository;
+    private final CocheRepository cocheRepository;
+
+    public ReseniaService(
+        ReseniaRepository repository,
+        UsuarioRepository usuarioRepository,
+        CocheRepository cocheRepository
+    ) {
+        this.repository = repository;
+        this.usuarioRepository = usuarioRepository;
+        this.cocheRepository = cocheRepository;
+    }
 
     private ReseniaResponse mapToResponse(Resenia resenia) {
         return new ReseniaResponse(
             resenia.getId(),
             resenia.getUsuario().getId(),
-            resenia.getCoche().getId(),
             resenia.getUsuario().getNombre(),
+            resenia.getCoche().getId(),
             resenia.getCoche().getNomenclatura(),
             resenia.getPuntuacion(),
             resenia.getComentario(),
@@ -32,28 +47,29 @@ public class ReseniaService {
         );
     }
 
-    private Resenia mapFromRequest(ReseniaRequest resenia) {
+    private Resenia mapFromRequest(
+        ReseniaRequest resenia,
+        Usuario usuario,
+        Coche coche
+    ) {
         Resenia resena = new Resenia();
-        Coche coche = new Coche();
-        coche.setId(resenia.cocheId());
         resena.setCoche(coche);
-        Usuario usuario = new Usuario();
-        usuario.setId(resenia.usuarioId());
         resena.setUsuario(usuario);
         resena.setPuntuacion(resenia.puntuacion());
-        resena.setComentario(resenia.comentario());
+        resena.setComentario(resenia.comentario().trim());
         return resena;
     }
 
+    @Transactional(readOnly = true)
     public List<ReseniaResponse> findAll() {
-        // Mapeamos resenia a reseniaResponse
-        List<Resenia> resenias = repository.findAll();
-        return resenias
+        return repository
+            .findAll()
             .stream()
             .map(resenia -> mapToResponse(resenia))
             .toList();
     }
 
+    @Transactional(readOnly = true)
     public Optional<ReseniaResponse> findById(UUID id) {
         Optional<ReseniaResponse> resenia = repository
             .findById(id)
@@ -61,33 +77,108 @@ public class ReseniaService {
         return resenia;
     }
 
-    public ReseniaResponse save(ReseniaRequest entity, UUID id) {
-        if (entity.puntuacion() < 1 || entity.puntuacion() > 5) {
-            throw new IllegalArgumentException(
-                "La puntuación debe estar entre 1 y 5"
+    @Transactional(readOnly = true)
+    public List<ReseniaResponse> findByCocheId(UUID cocheId) {
+        return repository
+            .findByCocheId(cocheId)
+            .stream()
+            .map(this::mapToResponse)
+            .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<ReseniaResponse> findByUsuarioId(UUID usuarioId) {
+        List<Resenia> resenias = repository.findByUsuarioId(usuarioId);
+
+        return resenias.stream().map(this::mapToResponse).toList();
+    }
+
+    @Transactional(readOnly = true)
+    public ResumenReseniasResponse getResumenByCocheId(UUID cocheId) {
+        List<Resenia> resenias = repository.findByCocheId(cocheId);
+        double media = resenias
+            .stream()
+            .mapToInt(Resenia::getPuntuacion)
+            .average()
+            .orElse(0.0);
+
+        return new ResumenReseniasResponse(cocheId, media, resenias.size());
+    }
+
+    @Transactional(readOnly = false)
+    public ReseniaResponse create(ReseniaRequest request) {
+        Usuario usuario = usuarioRepository
+            .findById(request.usuarioId())
+            .orElseThrow(() ->
+                new ResourceNotFoundException("Usuario no encontrado")
             );
-        }
-        if (entity.comentario() == null || entity.comentario().isEmpty()) {
-            throw new IllegalArgumentException(
-                "El comentario no puede estar vacío"
+        Coche coche = cocheRepository
+            .findById(request.cocheId())
+            .orElseThrow(() ->
+                new ResourceNotFoundException("Coche no encontrado")
             );
-        }
+
         if (
-            entity.comentario().length() > 500 ||
-            entity.comentario().length() < 3
+            repository.existsByUsuarioIdAndCocheId(
+                usuario.getId(),
+                coche.getId()
+            )
         ) {
-            throw new IllegalArgumentException(
-                "El comentario debe tener entre 3 y 500 caracteres"
+            throw new BadRequestException(
+                "El usuario ya ha publicado una resenia para este coche"
             );
         }
-        Resenia resenia = mapFromRequest(entity);
-        if (id != null) {
-            resenia.setId(id);
-        }
+
+        Resenia resenia = mapFromRequest(request, usuario, coche);
         return mapToResponse(repository.save(resenia));
     }
 
+    @Transactional(readOnly = false)
+    public ReseniaResponse update(UUID id, ReseniaRequest request) {
+        Resenia existente = repository
+            .findById(id)
+            .orElseThrow(() ->
+                new ResourceNotFoundException("Resenia no encontrada")
+            );
+
+        Usuario usuario = usuarioRepository
+            .findById(request.usuarioId())
+            .orElseThrow(() ->
+                new ResourceNotFoundException("Usuario no encontrado")
+            );
+        Coche coche = cocheRepository
+            .findById(request.cocheId())
+            .orElseThrow(() ->
+                new ResourceNotFoundException("Coche no encontrado")
+            );
+
+        boolean existeDuplicada = repository
+            .findByUsuarioId(usuario.getId())
+            .stream()
+            .anyMatch(
+                resenia ->
+                    !resenia.getId().equals(id) &&
+                    resenia.getCoche().getId().equals(coche.getId())
+            );
+
+        if (existeDuplicada) {
+            throw new BadRequestException(
+                "El usuario ya ha publicado una resenia para este coche"
+            );
+        }
+
+        existente.setUsuario(usuario);
+        existente.setCoche(coche);
+        existente.setPuntuacion(request.puntuacion());
+        existente.setComentario(request.comentario().trim());
+        return mapToResponse(repository.save(existente));
+    }
+
+    @Transactional(readOnly = false)
     public void deleteById(UUID id) {
+        if (!repository.existsById(id)) {
+            throw new ResourceNotFoundException("Resenia no encontrada");
+        }
         repository.deleteById(id);
     }
 }

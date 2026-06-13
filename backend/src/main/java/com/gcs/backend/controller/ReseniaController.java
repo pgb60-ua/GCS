@@ -2,11 +2,13 @@ package com.gcs.backend.controller;
 
 import com.gcs.backend.dto.ReseniaRequest;
 import com.gcs.backend.dto.ReseniaResponse;
+import com.gcs.backend.dto.ResumenReseniasResponse;
 import com.gcs.backend.service.ReseniaService;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +16,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/resenias")
 public class ReseniaController {
 
-    @Autowired
-    private ReseniaService service;
+    private final ReseniaService service;
+
+    public ReseniaController(ReseniaService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public List<ReseniaResponse> getAll() {
@@ -30,27 +35,40 @@ public class ReseniaController {
             .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/coche/{cocheId}")
+    public List<ReseniaResponse> getByCoche(@PathVariable UUID cocheId) {
+        return service.findByCocheId(cocheId);
+    }
+
+    @GetMapping("/usuario/{usuarioId}")
+    public List<ReseniaResponse> getByUsuario(@PathVariable UUID usuarioId) {
+        return service.findByUsuarioId(usuarioId);
+    }
+
+    @GetMapping("/coche/{cocheId}/resumen")
+    public ResumenReseniasResponse getResumenByCoche(@PathVariable UUID cocheId) {
+        return service.getResumenByCocheId(cocheId);
+    }
+
     @PostMapping
-    public ReseniaResponse create(@RequestBody ReseniaRequest entity) {
-        return service.save(entity, null);
+    public ResponseEntity<ReseniaResponse> create(
+        @Valid @RequestBody ReseniaRequest entity
+    ) {
+        return ResponseEntity
+            .status(HttpStatus.CREATED)
+            .body(service.create(entity));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ReseniaResponse> update(
+    public ReseniaResponse update(
         @PathVariable UUID id,
-        @RequestBody ReseniaRequest entity
+        @Valid @RequestBody ReseniaRequest entity
     ) {
-        if (!service.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(service.save(entity, id));
+        return service.update(id, entity);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
-        if (!service.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }

@@ -8,8 +8,8 @@ import lombok.Builder;
 public record ReseniaResponse(
     UUID id,
     UUID usuarioId,
-    UUID cocheId,
     String usuarioNombre,
+    UUID cocheId,
     String cocheNombre,
     Integer puntuacion,
     String comentario,
