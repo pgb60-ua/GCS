@@ -3,10 +3,10 @@ export interface Car {
   nomenclatura: string;
   equipoF1: string;
   temporada: string;
-  descripcion: string;
+  descripcion: string | null;
   precioBase: number;
   precioTotal: number;
-  imagenUrl: string;
+  imagenUrl: string | null;
   esBase: boolean;
   usuarioId?: string;
   createdAt?: string;

@@ -89,7 +89,7 @@
         <div class="car-body">
           <p class="team-name">{{ car.equipoF1 }}</p>
           <h2 class="car-name">{{ car.nomenclatura }}</h2>
-          <p class="car-desc">{{ car.descripcion | slice:0:100 }}{{ car.descripcion?.length > 100 ? '...' : '' }}</p>
+          <p class="car-desc">{{ car.descripcion | slice:0:100 }}{{ (car.descripcion?.length ?? 0) > 100 ? '...' : '' }}</p>
         </div>
 
         <div class="car-footer">

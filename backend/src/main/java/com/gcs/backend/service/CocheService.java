@@ -57,14 +57,16 @@ public class CocheService {
         Coche coche = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Coche no encontrado con id: " + id));
         applyRequest(request, coche);
+        if (Boolean.TRUE.equals(coche.getEsBase())) {
+            coche.setPrecioTotal(coche.getPrecioBase());
+        }
         return toResponse(repository.save(coche));
     }
 
     public void deleteById(UUID id) {
-        if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException("Coche no encontrado con id: " + id);
-        }
-        repository.deleteById(id);
+        Coche coche = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Coche no encontrado con id: " + id));
+        repository.delete(coche);
     }
 
     public Coche findEntityById(UUID id) {
@@ -79,13 +81,15 @@ public class CocheService {
         coche.setDescripcion(request.getDescripcion());
         coche.setPrecioBase(request.getPrecioBase());
         coche.setImagenUrl(request.getImagenUrl());
-        coche.setEsBase(request.getEsBase() != null ? request.getEsBase() : false);
+        // Preserve existing esBase if not explicitly sent in the request
+        if (request.getEsBase() != null) {
+            coche.setEsBase(request.getEsBase());
+        }
+        // Preserve existing usuario if usuarioId not explicitly sent in the request
         if (request.getUsuarioId() != null) {
             Usuario usuario = usuarioRepository.findById(request.getUsuarioId())
                     .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + request.getUsuarioId()));
             coche.setUsuario(usuario);
-        } else {
-            coche.setUsuario(null);
         }
     }
 

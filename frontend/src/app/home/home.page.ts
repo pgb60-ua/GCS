@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject, Subscription, switchMap } from 'rxjs';
 import { Car } from '../core/models/car.model';
 import { AuthService } from '../core/services/auth.service';
 import { CarService } from '../core/services/car.service';
@@ -11,7 +12,7 @@ import { User } from '../core/models/user.model';
   styleUrls: ['home.page.scss'],
   standalone: false,
 })
-export class HomePage {
+export class HomePage implements OnDestroy {
   currentUser: User | null = null;
   cars: Car[] = [];
   filteredCars: Car[] = [];
@@ -21,21 +22,17 @@ export class HomePage {
   loading = true;
   error = false;
 
+  private loadTrigger$ = new Subject<void>();
+  private sub: Subscription;
+
   constructor(
     private authService: AuthService,
     private carService: CarService,
     private router: Router
-  ) {}
-
-  ionViewWillEnter(): void {
-    this.currentUser = this.authService.getCurrentUser();
-    this.loadCars();
-  }
-
-  loadCars(): void {
-    this.loading = true;
-    this.error = false;
-    this.carService.getBaseCars().subscribe({
+  ) {
+    this.sub = this.loadTrigger$.pipe(
+      switchMap(() => this.carService.getBaseCars())
+    ).subscribe({
       next: (cars) => {
         this.cars = cars;
         this.teams = [...new Set(cars.map(c => c.equipoF1))].sort();
@@ -47,6 +44,21 @@ export class HomePage {
         this.loading = false;
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
+  ionViewWillEnter(): void {
+    this.currentUser = this.authService.getCurrentUser();
+    this.loadCars();
+  }
+
+  loadCars(): void {
+    this.loading = true;
+    this.error = false;
+    this.loadTrigger$.next();
   }
 
   applyFilters(): void {
