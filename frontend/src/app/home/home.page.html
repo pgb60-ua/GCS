@@ -1,0 +1,37 @@
+<app-header title="Kinetic Lab"></app-header>
+
+<ion-content [fullscreen]="true" class="catalog-shell">
+  <main class="catalog-layout">
+    <section class="page-heading">
+      <p class="kicker">Active configuration</p>
+      <h1>Catalogo GCS</h1>
+      <p class="lead">
+        Sesion iniciada como {{ currentUser?.nombre }}. Esta base queda preparada para catalogo, tabs y componentes compartidos.
+      </p>
+    </section>
+
+    <section class="status-grid">
+      <article class="status-card">
+        <span>Usuario</span>
+        <strong>{{ currentUser?.email }}</strong>
+        <p>{{ currentUser?.rol }}</p>
+      </article>
+      <article class="status-card">
+        <span>Backend</span>
+        <strong>/api</strong>
+        <p>Login y usuarios conectados</p>
+      </article>
+      <article class="status-card accent">
+        <span>Figma</span>
+        <strong>Estilo aplicado</strong>
+        <p>Paleta oscura, rojo racing y cian tecnico</p>
+      </article>
+    </section>
+
+    <app-empty-state
+      icon="F1"
+      title="Catalogo pendiente de Persona 2"
+      message="La navegacion, sesion local, estados base y estilo visual ya estan listos para conectar coches."
+    ></app-empty-state>
+  </main>
+</ion-content>

@@ -1,0 +1,933 @@
+﻿/* Estilos extraidos del archivo Figma: Tienda de F1 - Grupo V
+   Fuente: c9Ts62YhbLurybZ1jotdIe
+   Generado desde figma-file.json. */
+
+:root {
+  --figma-color-1: #131313;
+  --figma-color-2: rgba(24, 24, 27, 0.8);
+  --figma-color-3: #71717A;
+  --figma-color-4: #FFFFFF;
+  --figma-color-5: #DC2626;
+  --figma-color-6: #FFDB3C;
+  --figma-color-7: #27272A;
+  --figma-color-8: #E5E2E1;
+  --figma-color-9: rgba(255, 255, 255, 0.002);
+  --figma-color-10: rgba(220, 38, 38, 0.2);
+  --figma-color-11: #EF4444;
+  --figma-color-12: rgba(24, 24, 27, 0.5);
+  --figma-color-13: #E10600;
+  --figma-color-14: rgba(9, 9, 11, 0.5);
+  --figma-color-15: #A1A1AA;
+  --figma-color-16: rgba(34, 197, 94, 0.1);
+  --figma-color-17: #22C55E;
+  --figma-color-18: rgba(255, 219, 60, 0.1);
+  --figma-color-19: #52525B;
+  --figma-color-20: rgba(9, 9, 11, 0.3);
+  --figma-color-21: #18181B;
+  --figma-color-22: rgba(9, 9, 11, 0.8);
+  --figma-color-23: #09090B;
+  --figma-color-24: #6B7280;
+  --figma-color-25: #1C1B1B;
+  --figma-color-26: #FFB4A8;
+  --figma-color-27: #0E0E0E;
+  --figma-color-28: #3F3F46;
+  --figma-color-29: #FFF2F0;
+  --figma-color-30: #3B82F6;
+  --figma-color-31: #60A5FA;
+  --figma-color-32: #EAB308;
+  --figma-color-33: rgba(32, 31, 31, 0.6);
+  --figma-color-34: #725F00;
+  --figma-color-35: #2A2A2A;
+  --figma-color-36: #E9C400;
+  --figma-color-37: #201F1F;
+  --figma-color-38: #FFE16D;
+  --figma-color-39: #353534;
+  --figma-color-40: #10B981;
+  --figma-color-41: rgba(39, 39, 42, 0.5);
+  --figma-color-42: rgba(255, 180, 171, 0.1);
+  --figma-color-43: #FFB4AB;
+  --figma-color-44: rgba(218, 238, 0, 0.05);
+  --figma-color-45: rgba(0, 0, 0, 0.8);
+  --figma-color-46: #DAEE00;
+  --figma-color-47: rgba(218, 238, 0, 0.8);
+  --figma-color-48: rgba(255, 255, 255, 0.1);
+  --figma-color-49: rgba(28, 27, 27, 0.8);
+  --figma-color-50: #C6C6C6;
+  --figma-color-51: rgba(255, 255, 255, 0.6);
+  --figma-color-52: #1A1E00;
+  --figma-color-53: rgba(255, 255, 255, 0.02);
+  --figma-color-54: rgba(218, 238, 0, 0.1);
+  --figma-color-55: #C7C9AB;
+  --figma-color-56: rgba(198, 198, 198, 0.6);
+  --figma-color-57: rgba(198, 198, 198, 0.4);
+  --figma-color-58: rgba(198, 198, 198, 0.2);
+  --figma-color-59: rgba(28, 27, 27, 0.5);
+  --figma-color-60: rgba(255, 180, 171, 0.8);
+  --figma-color-61: rgba(19, 19, 19, 0.9);
+  --figma-color-62: rgba(255, 255, 255, 0.7);
+  --figma-color-63: rgba(255, 255, 255, 0.4);
+  --figma-color-64: #E3E2E2;
+  --figma-color-65: #000000;
+  --figma-color-66: rgba(180, 240, 199, 0.1);
+  --figma-color-67: #98D4AC;
+  --figma-color-68: rgba(147, 0, 10, 0.2);
+  --figma-color-69: rgba(255, 255, 255, 0.2);
+  --figma-color-70: rgba(42, 42, 42, 0.4);
+  --figma-color-71: rgba(19, 19, 19, 0.8);
+  --figma-color-72: rgba(255, 255, 255, 0.05);
+  --figma-color-73: #919378;
+  --figma-color-74: rgba(42, 42, 42, 0.5);
+  --figma-color-75: rgba(255, 255, 255, 0.01);
+  --figma-color-76: rgba(42, 42, 42, 0.3);
+  --figma-color-77: rgba(218, 238, 0, 0.2);
+  --figma-color-78: #B4F0C7;
+  --figma-color-79: rgba(145, 147, 120, 0.5);
+  --figma-color-80: #464832;
+  --figma-color-81: #002110;
+  --figma-color-82: #165132;
+  --figma-color-83: #13131B;
+  --figma-color-84: #1B1B24;
+  --figma-color-85: rgba(27, 27, 36, 0.6);
+  --figma-color-86: #29DEC9;
+  --figma-color-87: #E4E1EE;
+  --figma-color-88: #E9BCB5;
+  --figma-color-89: #34343E;
+  --figma-color-90: #83CFFF;
+  --figma-color-91: #00344C;
+  --figma-color-92: #003731;
+  --figma-color-93: rgba(52, 52, 62, 0.6);
+  --figma-color-94: rgba(41, 222, 201, 0.1);
+  --figma-color-95: rgba(225, 6, 0, 0.1);
+  --figma-color-96: #0D0D16;
+  --figma-color-97: #5E3F3A;
+  --figma-color-98: rgba(41, 41, 51, 0.6);
+  --figma-color-99: rgba(41, 222, 201, 0.2);
+  --figma-color-100: rgba(255, 180, 168, 0.2);
+  --figma-color-101: #292933;
+  --figma-color-102: rgba(228, 225, 238, 0.6);
+  --figma-color-103: rgba(233, 188, 181, 0.4);
+  --figma-color-104: rgba(228, 225, 238, 0.3);
+  --figma-color-105: rgba(228, 225, 238, 0.4);
+  --figma-color-106: rgba(255, 255, 255, 0.3);
+  --figma-color-107: rgba(27, 154, 212, 0.2);
+  --figma-color-108: rgba(225, 6, 0, 0.2);
+  --figma-color-109: rgba(52, 52, 62, 0.5);
+  --figma-color-110: #1F1F28;
+  --figma-color-111: rgba(228, 225, 238, 0.5);
+  --figma-color-112: rgba(113, 63, 18, 0.3);
+  --figma-color-113: rgba(20, 83, 45, 0.3);
+  --figma-color-114: #4ADE80;
+  --figma-color-115: rgba(233, 188, 181, 0.6);
+  --figma-color-116: rgba(0, 126, 114, 0.2);
+  --figma-color-117: #FF0000;
+  --figma-color-118: #646464;
+  --figma-color-119: #F5F5F5;
+  --figma-color-120: #D9D9D9;
+  --figma-color-121: #1E1E1E;
+  --figma-color-122: #757575;
+  --figma-color-123: #B3B3B3;
+  --figma-font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --figma-radius-sm: 8px;
+  --figma-radius-md: 12px;
+  --figma-radius-lg: 20px;
+  --figma-space-xs: 4px;
+  --figma-space-sm: 8px;
+  --figma-space-md: 16px;
+  --figma-space-lg: 24px;
+  --figma-space-xl: 32px;
+}
+
+body {
+  font-family: var(--figma-font-family);
+}
+
+.figma-text-240 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 240.0px;
+  font-weight: 900;
+  line-height: 240px;
+}
+
+.figma-text-128 {
+  font-family: 'Material Symbols Outlined', var(--figma-font-family);
+  font-size: 128.0px;
+  font-weight: 400;
+  line-height: 128px;
+}
+
+.figma-text-60 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 60.0px;
+  font-weight: 900;
+  line-height: 60px;
+}
+
+.figma-text-48 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 48.0px;
+  font-weight: 700;
+  line-height: 48px;
+}
+
+.figma-text-48 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 48.0px;
+  font-weight: 900;
+  line-height: 48px;
+}
+
+.figma-text-36 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 36.0px;
+  font-weight: 900;
+  line-height: 40px;
+}
+
+.figma-text-36 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 36.0px;
+  font-weight: 800;
+  line-height: 40px;
+}
+
+.figma-text-36 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 36.0px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.figma-text-30 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 30.0px;
+  font-weight: 900;
+  line-height: 36px;
+}
+
+.figma-text-30 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 30.0px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+.figma-text-24 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 24.0px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.figma-text-24 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 24.0px;
+  font-weight: 400;
+  line-height: 29.05px;
+}
+
+.figma-text-24 {
+  font-family: 'Material Symbols Outlined', var(--figma-font-family);
+  font-size: 24.0px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.figma-text-24 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 24.0px;
+  font-weight: 900;
+  line-height: 32px;
+}
+
+.figma-text-24 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 24.0px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.figma-text-24 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 24.0px;
+  font-weight: 900;
+  line-height: 32px;
+}
+
+.figma-text-24 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 24.0px;
+  font-weight: 600;
+  line-height: 28.8px;
+}
+
+.figma-text-20 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 20.0px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.figma-text-20 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 20.0px;
+  font-weight: 900;
+  line-height: 28px;
+}
+
+.figma-text-20 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 20.0px;
+  font-weight: 900;
+  line-height: 20px;
+}
+
+.figma-text-20 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 20.0px;
+  font-weight: 900;
+  line-height: 28px;
+}
+
+.figma-text-20 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 20.0px;
+  font-weight: 900;
+  line-height: 28px;
+}
+
+.figma-text-20 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 20.0px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.figma-text-18 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 18.0px;
+  font-weight: 900;
+  line-height: 28px;
+}
+
+.figma-text-18 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 18.0px;
+  font-weight: 900;
+  line-height: 28px;
+}
+
+.figma-text-18 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 18.0px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.figma-text-18 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 18.0px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.figma-text-18 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 18.0px;
+  font-weight: 900;
+  line-height: 28px;
+}
+
+.figma-text-16 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 16.0px;
+  font-weight: 600;
+  line-height: 22.4px;
+}
+
+.figma-text-16 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 16.0px;
+  font-weight: 700;
+  line-height: 20.42px;
+}
+
+.figma-text-16 {
+  font-family: 'Nimbus Mono PS', var(--figma-font-family);
+  font-size: 16.0px;
+  font-weight: 400;
+  line-height: 19.2px;
+}
+
+.figma-text-16 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 16.0px;
+  font-weight: 400;
+  line-height: 19.36px;
+}
+
+.figma-text-16 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 16.0px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.figma-text-16 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 16.0px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.figma-text-16 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 16.0px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.figma-text-16 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 16.0px;
+  font-weight: 400;
+  line-height: 22.4px;
+}
+
+.figma-text-16 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 16.0px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.figma-text-16 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 16.0px;
+  font-weight: 900;
+  line-height: 24px;
+}
+
+.figma-text-16 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 16.0px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.figma-text-16 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 16.0px;
+  font-weight: 900;
+  line-height: 24px;
+}
+
+.figma-text-14 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 14.0px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.figma-text-14 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 14.0px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.figma-text-14 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 14.0px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.figma-text-14 {
+  font-family: 'Material Symbols Outlined', var(--figma-font-family);
+  font-size: 14.0px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.figma-text-14 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 14.0px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.figma-text-14 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 14.0px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.figma-text-14 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 14.0px;
+  font-weight: 400;
+  line-height: 22.75px;
+}
+
+.figma-text-14 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 14.0px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.figma-text-14 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 14.0px;
+  font-weight: 900;
+  line-height: 20px;
+}
+
+.figma-text-14 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 14.0px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.figma-text-14 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 14.0px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.figma-text-14 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 14.0px;
+  font-weight: 900;
+  line-height: 20px;
+}
+
+.figma-text-12 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.figma-text-12 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.figma-text-12 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 900;
+  line-height: 16px;
+}
+
+.figma-text-12 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.figma-text-12 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 400;
+  line-height: 19.5px;
+}
+
+.figma-text-12 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 900;
+  line-height: 16px;
+}
+
+.figma-text-12 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.figma-text-12 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.figma-text-12 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.figma-text-12 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.figma-text-12 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.figma-text-12 {
+  font-family: 'Nimbus Mono PS', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.figma-text-12 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 400;
+  line-height: 15.31px;
+}
+
+.figma-text-12 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.figma-text-12 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 12.0px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.figma-text-11 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 11.0px;
+  font-weight: 400;
+  line-height: 17.88px;
+}
+
+.figma-text-11 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 11.0px;
+  font-weight: 900;
+  line-height: 16.5px;
+}
+
+.figma-text-11 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 11.0px;
+  font-weight: 400;
+  line-height: 16.5px;
+}
+
+.figma-text-11 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 11.0px;
+  font-weight: 400;
+  line-height: 13.31px;
+}
+
+.figma-text-11 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 11.0px;
+  font-weight: 700;
+  line-height: 16.5px;
+}
+
+.figma-text-11 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 11.0px;
+  font-weight: 600;
+  line-height: 13.31px;
+}
+
+.figma-text-11 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 11.0px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.figma-text-10 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 700;
+  line-height: 15px;
+}
+
+.figma-text-10 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 400;
+  line-height: 15px;
+}
+
+.figma-text-10 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.figma-text-10 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 900;
+  line-height: 15px;
+}
+
+.figma-text-10 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 900;
+  line-height: 15px;
+}
+
+.figma-text-10 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 400;
+  line-height: 11.33px;
+}
+
+.figma-text-10 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 700;
+  line-height: 15px;
+}
+
+.figma-text-10 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 700;
+  line-height: 10px;
+}
+
+.figma-text-10 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 500;
+  line-height: 12.76px;
+}
+
+.figma-text-10 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 400;
+  line-height: 15px;
+}
+
+.figma-text-10 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 700;
+  line-height: 12.76px;
+}
+
+.figma-text-10 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 900;
+  line-height: 28px;
+}
+
+.figma-text-10 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.figma-text-10 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 400;
+  line-height: 12.76px;
+}
+
+.figma-text-10 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 700;
+  line-height: 12.1px;
+}
+
+.figma-text-10 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 500;
+  line-height: 15px;
+}
+
+.figma-text-10 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 400;
+  line-height: 15px;
+}
+
+.figma-text-10 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 10.0px;
+  font-weight: 700;
+  line-height: 15px;
+}
+
+.figma-text-9 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 9.0px;
+  font-weight: 700;
+  line-height: 13.5px;
+}
+
+.figma-text-9 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 9.0px;
+  font-weight: 700;
+  line-height: 11.48px;
+}
+
+.figma-text-9 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 9.0px;
+  font-weight: 400;
+  line-height: 11.25px;
+}
+
+.figma-text-9 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 9.0px;
+  font-weight: 400;
+  line-height: 11.48px;
+}
+
+.figma-text-9 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 9.0px;
+  font-weight: 500;
+  line-height: 13.5px;
+}
+
+.figma-text-9 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 9.0px;
+  font-weight: 400;
+  line-height: 14.63px;
+}
+
+.figma-text-9 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 9.0px;
+  font-weight: 900;
+  line-height: 10.89px;
+}
+
+.figma-text-9 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 9.0px;
+  font-weight: 400;
+  line-height: 13.5px;
+}
+
+.figma-text-9 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 9.0px;
+  font-weight: 700;
+  line-height: 13.5px;
+}
+
+.figma-text-9 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 9.0px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.figma-text-9 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 9.0px;
+  font-weight: 400;
+  line-height: 13.5px;
+}
+
+.figma-text-9 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 9.0px;
+  font-weight: 900;
+  line-height: 16px;
+}
+
+.figma-text-9 {
+  font-family: 'Liberation Mono', var(--figma-font-family);
+  font-size: 9.0px;
+  font-weight: 400;
+  line-height: 13.5px;
+}
+
+.figma-text-8 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 8.0px;
+  font-weight: 400;
+  line-height: 12px;
+}
+
+.figma-text-8 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 8.0px;
+  font-weight: 900;
+  line-height: 12px;
+}
+
+.figma-text-8 {
+  font-family: 'Inter', var(--figma-font-family);
+  font-size: 8.0px;
+  font-weight: 700;
+  line-height: 12px;
+}
+
+.figma-text-8 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 8.0px;
+  font-weight: 700;
+  line-height: 12px;
+}
+
+.figma-text-7 {
+  font-family: 'Space Grotesk', var(--figma-font-family);
+  font-size: 7.0px;
+  font-weight: 400;
+  line-height: 10.5px;
+}
+
+/* Figma style: TEXT - Body Base (34:109) */
+/* Figma style: TEXT - Body Strong (34:152) */
+/* Figma style: TEXT - embed.figma.com/Inter/Semi Bold (533:3359) */
+/* Figma style: TEXT - Heading (34:96) */
+/* Figma style: TEXT - Single Line/Body Base (36:342) */
+/* Figma style: FILL - www.figma.com/Azure Radiance (533:1675) */
+/* Figma style: FILL - www.figma.com/Black (533:1695) */
+/* Figma style: FILL - www.figma.com/Black 0% (533:1680) */
+/* Figma style: FILL - www.figma.com/Black 10% (533:1726) */
+/* Figma style: FILL - www.figma.com/Black 89.8% (533:1700) */
+/* Figma style: FILL - www.figma.com/Dodger Blue (533:1687) */
+/* Figma style: TEXT - www.figma.com/Inter/Medium (533:1710) */
+/* Figma style: TEXT - www.figma.com/Inter/Regular upper (533:1678) */
+/* Figma style: TEXT - www.figma.com/Inter/Semi Bold (533:1745) */
+/* Figma style: FILL - www.figma.com/Lynch (533:1691) */
+/* Figma style: FILL - www.figma.com/Mercury (533:1705) */
+/* Figma style: FILL - www.figma.com/Mine Shaft (533:1760) */
+/* Figma style: FILL - www.figma.com/Pomegranate (533:1671) */
+/* Figma style: FILL - www.figma.com/Tundora (533:1654) */
+/* Figma style: FILL - www.figma.com/White (533:1647) */

@@ -1,52 +1,48 @@
 package com.gcs.backend.controller;
 
-import com.gcs.backend.model.Usuario;
+import com.gcs.backend.dto.UsuarioRequest;
+import com.gcs.backend.dto.UsuarioResponse;
 import com.gcs.backend.service.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioService service;
+    private final UsuarioService service;
+
+    public UsuarioController(UsuarioService service) {
+        this.service = service;
+    }
 
     @GetMapping
-    public List<Usuario> getAll() {
+    public List<UsuarioResponse> getAll() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> getById(@PathVariable UUID id) {
-        Optional<Usuario> entity = service.findById(id);
-        return entity.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public UsuarioResponse getById(@PathVariable UUID id) {
+        return service.findById(id);
     }
 
     @PostMapping
-    public Usuario create(@RequestBody Usuario entity) {
-        return service.save(entity);
+    public ResponseEntity<UsuarioResponse> create(@Valid @RequestBody UsuarioRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> update(@PathVariable UUID id, @RequestBody Usuario entity) {
-        if (!service.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        entity.setId(id);
-        return ResponseEntity.ok(service.save(entity));
+    public UsuarioResponse update(@PathVariable UUID id, @Valid @RequestBody UsuarioRequest request) {
+        return service.update(id, request);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
-        if (!service.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }

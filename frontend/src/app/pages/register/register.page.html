@@ -1,0 +1,77 @@
+<ion-content [fullscreen]="true" class="register-shell">
+  <main class="register-layout">
+    <section class="brand-panel">
+      <p class="kicker">GCS Engineering</p>
+      <h1>Nuevo piloto</h1>
+      <p class="lead">Crea una cuenta cliente para guardar configuraciones y continuar el flujo del catalogo.</p>
+      <div class="status-strip">
+        <span>Rol</span>
+        <strong>CLIENTE</strong>
+      </div>
+    </section>
+
+    <form class="register-card" (ngSubmit)="submit()">
+      <div class="card-heading">
+        <span class="system-dot"></span>
+        <p>REGISTER MODULE</p>
+      </div>
+
+      <h2>Crear cuenta</h2>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Nombre</ion-label>
+        <ion-input
+          type="text"
+          name="nombre"
+          [(ngModel)]="nombre"
+          autocomplete="name"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          autocomplete="email"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          autocomplete="new-password"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Repetir password</ion-label>
+        <ion-input
+          type="password"
+          name="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          autocomplete="new-password"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <ion-button expand="block" type="submit" [disabled]="loading">
+        <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+        <span *ngIf="!loading">Registrarme</span>
+      </ion-button>
+
+      <ion-button class="secondary-action" expand="block" fill="clear" routerLink="/login" type="button">
+        Ya tengo cuenta
+      </ion-button>
+    </form>
+  </main>
+</ion-content>

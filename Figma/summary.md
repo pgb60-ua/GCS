@@ -1,0 +1,162 @@
+﻿# Resumen de estructura, componentes y estilos
+
+## Estructura
+
+- Nombre del archivo: Tienda de F1 - Grupo V
+- Version: 2364234786667961915
+- Ultima modificacion: 2026-06-12T16:24:07Z
+- Paginas: 4
+- Nodos totales analizados: 6370
+- Frames principales: 29
+- Textos: 1642
+- Nodos con rellenos: 3184
+
+## Componentes
+
+- `34:158` - Avatar Block
+- `34:175` - Platform=Desktop
+- `34:163` - Review Card
+- `36:349` - Search
+- `34:7` - Star
+- `36:354` - State=Default, Value Type=Placeholder
+- `34:110` - Text
+- `34:98` - Text Heading
+- `34:136` - Type=Image, Size=Large, Shape=Circle
+- `34:78` - User
+- `34:44` - Variant=Neutral, State=Default, Size=Medium
+
+## Estilos publicados
+
+- FILL: `533:1675` - www.figma.com/Azure Radiance
+- FILL: `533:1695` - www.figma.com/Black
+- FILL: `533:1680` - www.figma.com/Black 0%
+- FILL: `533:1726` - www.figma.com/Black 10%
+- FILL: `533:1700` - www.figma.com/Black 89.8%
+- FILL: `533:1687` - www.figma.com/Dodger Blue
+- FILL: `533:1691` - www.figma.com/Lynch
+- FILL: `533:1705` - www.figma.com/Mercury
+- FILL: `533:1760` - www.figma.com/Mine Shaft
+- FILL: `533:1671` - www.figma.com/Pomegranate
+- FILL: `533:1654` - www.figma.com/Tundora
+- FILL: `533:1647` - www.figma.com/White
+- TEXT: `34:109` - Body Base
+- TEXT: `34:152` - Body Strong
+- TEXT: `533:3359` - embed.figma.com/Inter/Semi Bold
+- TEXT: `34:96` - Heading
+- TEXT: `36:342` - Single Line/Body Base
+- TEXT: `533:1710` - www.figma.com/Inter/Medium
+- TEXT: `533:1678` - www.figma.com/Inter/Regular upper
+- TEXT: `533:1745` - www.figma.com/Inter/Semi Bold
+
+## Tipografias detectadas
+
+- Space Grotesk, peso 900, 240.0px, line-height 240
+- Space Grotesk, peso 900, 60.0px, line-height 60
+- Space Grotesk, peso 900, 48.0px, line-height 48
+- Space Grotesk, peso 700, 48.0px, line-height 48
+- Space Grotesk, peso 800, 36.0px, line-height 40
+- Space Grotesk, peso 700, 36.0px, line-height 40
+- Space Grotesk, peso 900, 36.0px, line-height 40
+- Space Grotesk, peso 900, 30.0px, line-height 36
+- Space Grotesk, peso 700, 30.0px, line-height 36
+- Space Grotesk, peso 900, 24.0px, line-height 32
+- Space Grotesk, peso 700, 24.0px, line-height 30
+- Space Grotesk, peso 700, 24.0px, line-height 32
+- Space Grotesk, peso 900, 20.0px, line-height 20
+- Space Grotesk, peso 700, 20.0px, line-height 28
+- Space Grotesk, peso 900, 20.0px, line-height 28
+- Space Grotesk, peso 700, 18.0px, line-height 28
+- Space Grotesk, peso 900, 18.0px, line-height 28
+- Space Grotesk, peso 400, 16.0px, line-height 24
+- Space Grotesk, peso 500, 16.0px, line-height 24
+- Space Grotesk, peso 900, 16.0px, line-height 24
+- Space Grotesk, peso 700, 16.0px, line-height 20.42
+- Space Grotesk, peso 700, 14.0px, line-height 20
+- Space Grotesk, peso 400, 14.0px, line-height 20
+- Space Grotesk, peso 500, 14.0px, line-height 20
+- Space Grotesk, peso 900, 14.0px, line-height 20
+- Space Grotesk, peso 900, 12.0px, line-height 16
+- Space Grotesk, peso 400, 12.0px, line-height 24
+- Space Grotesk, peso 400, 12.0px, line-height 16
+- Space Grotesk, peso 400, 12.0px, line-height 15.31
+- Space Grotesk, peso 700, 12.0px, line-height 16
+- Space Grotesk, peso 500, 12.0px, line-height 16
+- Space Grotesk, peso 700, 11.0px, line-height 24
+- Space Grotesk, peso 700, 11.0px, line-height 16.5
+- Space Grotesk, peso 900, 11.0px, line-height 16.5
+- Space Grotesk, peso 700, 10.0px, line-height 10
+- Space Grotesk, peso 500, 10.0px, line-height 12.76
+- Space Grotesk, peso 700, 10.0px, line-height 16
+- Space Grotesk, peso 400, 10.0px, line-height 12.76
+- Space Grotesk, peso 700, 10.0px, line-height 12.76
+- Space Grotesk, peso 900, 10.0px, line-height 15
+- Space Grotesk, peso 400, 10.0px, line-height 15
+- Space Grotesk, peso 400, 10.0px, line-height 28
+- Space Grotesk, peso 900, 10.0px, line-height 28
+- Space Grotesk, peso 700, 10.0px, line-height 15
+- Space Grotesk, peso 500, 10.0px, line-height 15
+- Space Grotesk, peso 500, 9.0px, line-height 13.5
+- Space Grotesk, peso 400, 9.0px, line-height 13.5
+- Space Grotesk, peso 400, 9.0px, line-height 11.48
+- Space Grotesk, peso 700, 9.0px, line-height 11.48
+- Space Grotesk, peso 700, 9.0px, line-height 13.5
+- Space Grotesk, peso 400, 8.0px, line-height 12
+- Space Grotesk, peso 900, 8.0px, line-height 12
+- Space Grotesk, peso 700, 8.0px, line-height 12
+- Space Grotesk, peso 400, 7.0px, line-height 10.5
+- Nimbus Mono PS, peso 400, 16.0px, line-height 19.2
+- Nimbus Mono PS, peso 400, 12.0px, line-height 16
+- Material Symbols Outlined, peso 400, 128.0px, line-height 128
+- Material Symbols Outlined, peso 400, 24.0px, line-height 24
+- Material Symbols Outlined, peso 400, 14.0px, line-height 20
+- Liberation Mono, peso 900, 20.0px, line-height 28
+- Liberation Mono, peso 700, 20.0px, line-height 28
+- Liberation Mono, peso 900, 18.0px, line-height 28
+- Liberation Mono, peso 700, 18.0px, line-height 28
+- Liberation Mono, peso 900, 14.0px, line-height 20
+- Liberation Mono, peso 400, 14.0px, line-height 20
+- Liberation Mono, peso 700, 14.0px, line-height 20
+- Liberation Mono, peso 400, 12.0px, line-height 16
+- Liberation Mono, peso 700, 12.0px, line-height 16
+- Liberation Mono, peso 500, 12.0px, line-height 16
+- Liberation Mono, peso 400, 10.0px, line-height 11.33
+- Liberation Mono, peso 700, 10.0px, line-height 15
+- Liberation Mono, peso 400, 10.0px, line-height 15
+- Liberation Mono, peso 400, 9.0px, line-height 13.5
+- Liberation Mono, peso 900, 9.0px, line-height 16
+- Liberation Mono, peso 700, 9.0px, line-height 16
+- Inter, peso 900, 24.0px, line-height 32
+- Inter, peso 600, 24.0px, line-height 28.8
+- Inter, peso 400, 24.0px, line-height 29.05
+- Inter, peso 900, 20.0px, line-height 28
+- Inter, peso 900, 18.0px, line-height 28
+- Inter, peso 600, 16.0px, line-height 22.4
+- Inter, peso 400, 16.0px, line-height 16
+- Inter, peso 700, 16.0px, line-height 24
+- Inter, peso 400, 16.0px, line-height 24
+- Inter, peso 400, 16.0px, line-height 22.4
+- Inter, peso 900, 16.0px, line-height 24
+- Inter, peso 400, 16.0px, line-height 19.36
+- Inter, peso 500, 14.0px, line-height 20
+- Inter, peso 700, 14.0px, line-height 20
+- Inter, peso 400, 14.0px, line-height 20
+- Inter, peso 400, 14.0px, line-height 22.75
+- Inter, peso 500, 12.0px, line-height 16
+- Inter, peso 700, 12.0px, line-height 16
+- Inter, peso 400, 12.0px, line-height 16
+- Inter, peso 900, 12.0px, line-height 16
+- Inter, peso 400, 12.0px, line-height 19.5
+- Inter, peso 400, 11.0px, line-height 13.31
+- Inter, peso 400, 11.0px, line-height 17.88
+- Inter, peso 600, 11.0px, line-height 13.31
+- Inter, peso 400, 11.0px, line-height 16.5
+- Inter, peso 400, 10.0px, line-height 15
+- Inter, peso 700, 10.0px, line-height 12.1
+- Inter, peso 900, 10.0px, line-height 15
+- Inter, peso 700, 10.0px, line-height 15
+- Inter, peso 400, 9.0px, line-height 11.25
+- Inter, peso 900, 9.0px, line-height 10.89
+- Inter, peso 400, 9.0px, line-height 14.63
+- Inter, peso 700, 9.0px, line-height 13.5
+- Inter, peso 400, 9.0px, line-height 13.5
+- Inter, peso 700, 8.0px, line-height 12

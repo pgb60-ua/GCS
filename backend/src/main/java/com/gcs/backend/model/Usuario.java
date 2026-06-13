@@ -1,6 +1,8 @@
 package com.gcs.backend.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -20,9 +22,18 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
+
+    @NotBlank(message = "El email es obligatorio")
+    @Email(message = "El email no tiene un formato valido")
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @NotBlank(message = "La password es obligatoria")
     private String password;
+
+    @NotBlank(message = "El rol es obligatorio")
     private String rol;
 
     @CreationTimestamp
