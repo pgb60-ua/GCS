@@ -61,7 +61,7 @@ public class ReseniaService {
         return resenia;
     }
 
-    public ReseniaResponse save(ReseniaRequest entity) {
+    public ReseniaResponse save(ReseniaRequest entity, UUID id) {
         if (entity.puntuacion() < 1 || entity.puntuacion() > 5) {
             throw new IllegalArgumentException(
                 "La puntuación debe estar entre 1 y 5"
@@ -81,6 +81,9 @@ public class ReseniaService {
             );
         }
         Resenia resenia = mapFromRequest(entity);
+        if (id != null) {
+            resenia.setId(id);
+        }
         return mapToResponse(repository.save(resenia));
     }
 

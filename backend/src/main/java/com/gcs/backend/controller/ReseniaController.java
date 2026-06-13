@@ -2,8 +2,6 @@ package com.gcs.backend.controller;
 
 import com.gcs.backend.dto.ReseniaRequest;
 import com.gcs.backend.dto.ReseniaResponse;
-import com.gcs.backend.dto.ResumenReseniasResponse;
-import com.gcs.backend.model.Resenia;
 import com.gcs.backend.service.ReseniaService;
 import java.util.List;
 import java.util.Optional;
@@ -33,8 +31,8 @@ public class ReseniaController {
     }
 
     @PostMapping
-    public Resenia create(@RequestBody ReseniaRequest entity) {
-        return service.save(entity);
+    public ReseniaResponse create(@RequestBody ReseniaRequest entity) {
+        return service.save(entity, null);
     }
 
     @PutMapping("/{id}")
@@ -45,8 +43,7 @@ public class ReseniaController {
         if (!service.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
         }
-        entity.setId(id);
-        return ResponseEntity.ok(service.save(entity));
+        return ResponseEntity.ok(service.save(entity, id));
     }
 
     @DeleteMapping("/{id}")
