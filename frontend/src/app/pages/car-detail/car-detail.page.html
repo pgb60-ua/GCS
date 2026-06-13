@@ -1,0 +1,35 @@
+<app-header title="Detalle del coche"></app-header>
+
+<ion-content [fullscreen]="true" class="detail-shell">
+  <main class="detail-layout" *ngIf="!loading && car">
+    <section class="page-heading">
+      <p class="kicker">{{ car.equipoF1 }} &middot; {{ car.temporada }}</p>
+      <h1>{{ car.nomenclatura }}</h1>
+    </section>
+
+    <img *ngIf="car.imagenUrl" [src]="car.imagenUrl" [alt]="car.nomenclatura" class="car-image" (error)="$event.target.src='https://placehold.co/640x360/333/FFF?text=Imagen+no+disponible'" />
+
+    <section class="info-card">
+      <p class="lead">{{ car.descripcion }}</p>
+      <div class="price-strip">
+        <span>Precio base</span>
+        <strong>{{ car.precioBase | currency:'EUR' }}</strong>
+      </div>
+    </section>
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <ion-button expand="block" (click)="personalize()" [disabled]="duplicating">
+      <app-loading-spinner *ngIf="duplicating"></app-loading-spinner>
+      <span *ngIf="!duplicating">Personalizar</span>
+    </ion-button>
+  </main>
+
+  <app-loading-spinner *ngIf="loading" label="Cargando coche..."></app-loading-spinner>
+  <app-empty-state
+    *ngIf="!loading && !car && !errorMessage"
+    icon="F1"
+    title="Coche no encontrado"
+    message="El coche solicitado no existe o no esta disponible."
+  ></app-empty-state>
+</ion-content>

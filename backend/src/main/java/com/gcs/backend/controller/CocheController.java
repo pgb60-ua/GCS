@@ -1,52 +1,81 @@
 package com.gcs.backend.controller;
 
-import com.gcs.backend.model.Coche;
+import com.gcs.backend.dto.CocheRequest;
+import com.gcs.backend.dto.CocheResumenResponse;
+import com.gcs.backend.dto.CocheResponse;
+import com.gcs.backend.dto.DuplicarCocheRequest;
 import com.gcs.backend.service.CocheService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/coches")
 public class CocheController {
 
-    @Autowired
-    private CocheService service;
+    private final CocheService service;
+
+    public CocheController(CocheService service) {
+        this.service = service;
+    }
 
     @GetMapping
-    public List<Coche> getAll() {
+    public List<CocheResponse> getAll() {
         return service.findAll();
     }
 
+    @GetMapping("/base")
+    public List<CocheResponse> getBaseCars() {
+        return service.findByEsBaseTrue();
+    }
+
+    @GetMapping("/usuario/{usuarioId}")
+    public List<CocheResponse> getByUsuario(@PathVariable UUID usuarioId) {
+        return service.findByUsuarioId(usuarioId);
+    }
+
+    @GetMapping("/equipo/{equipoF1}")
+    public List<CocheResponse> getByEquipo(@PathVariable String equipoF1) {
+        return service.findByEquipoF1IgnoreCase(equipoF1);
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<Coche> getById(@PathVariable UUID id) {
-        Optional<Coche> entity = service.findById(id);
-        return entity.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public CocheResponse getById(@PathVariable UUID id) {
+        return service.findById(id);
+    }
+
+    @GetMapping("/{id}/resumen")
+    public CocheResumenResponse getResumen(@PathVariable UUID id) {
+        return service.getResumen(id);
     }
 
     @PostMapping
-    public Coche create(@RequestBody Coche entity) {
-        return service.save(entity);
+    public ResponseEntity<CocheResponse> create(@Valid @RequestBody CocheRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
+    }
+
+    @PostMapping("/{cocheBaseId}/duplicar")
+    public ResponseEntity<CocheResponse> duplicate(@PathVariable UUID cocheBaseId, @RequestBody DuplicarCocheRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.duplicate(cocheBaseId, request));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Coche> update(@PathVariable UUID id, @RequestBody Coche entity) {
-        if (!service.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        entity.setId(id);
-        return ResponseEntity.ok(service.save(entity));
+    public CocheResponse update(@PathVariable UUID id, @Valid @RequestBody CocheRequest request) {
+        return service.update(id, request);
+    }
+
+    @PatchMapping("/{id}")
+    public CocheResponse patch(@PathVariable UUID id, @RequestBody Map<String, Object> updates) {
+        return service.patch(id, updates);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
-        if (!service.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }

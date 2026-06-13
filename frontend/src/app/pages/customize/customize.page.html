@@ -1,0 +1,58 @@
+<app-header title="Personalizacion"></app-header>
+
+<ion-content [fullscreen]="true" class="customize-shell">
+  <main class="customize-layout" *ngIf="!loading && summary">
+    <section class="page-heading">
+      <p class="kicker">{{ summary.equipoF1 }} &middot; {{ summary.temporada }}</p>
+      <h1>{{ summary.nomenclatura }}</h1>
+    </section>
+
+    <img *ngIf="summary.imagenUrl" [src]="summary.imagenUrl" [alt]="summary.nomenclatura" class="car-image" (error)="$event.target.src='https://placehold.co/640x360/333/FFF?text=Imagen+no+disponible'" />
+
+    <section class="info-card">
+      <div class="price-strip">
+        <span>Precio total</span>
+        <strong>{{ summary.precioTotal | currency:'EUR' }}</strong>
+      </div>
+    </section>
+
+    <section class="form-card">
+      <h2>Datos del coche</h2>
+      <ion-item lines="none">
+        <ion-label position="stacked">Nomenclatura</ion-label>
+        <ion-input [(ngModel)]="newNomenclatura" name="nomenclatura"></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="stacked">Descripcion</ion-label>
+        <ion-textarea [(ngModel)]="newDescripcion" name="descripcion" rows="3"></ion-textarea>
+      </ion-item>
+      <ion-button expand="block" (click)="saveChanges()" [disabled]="saving">
+        <app-loading-spinner *ngIf="saving"></app-loading-spinner>
+        <span *ngIf="!saving">Guardar cambios</span>
+      </ion-button>
+    </section>
+
+    <section class="parts-section">
+      <h2>Piezas instaladas</h2>
+      <p *ngIf="summary.piezas.length === 0">No hay piezas instaladas. Las secciones de motor, pintura, suspension y aerodinamica se activaran con el trabajo de P4.</p>
+      <div class="part-item" *ngFor="let p of summary.piezas">
+        <span>{{ p.nombre }}</span>
+        <span>{{ p.cantidad }} x {{ p.precio | currency:'EUR' }} = {{ p.subtotal | currency:'EUR' }}</span>
+      </div>
+    </section>
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <ion-button expand="block" fill="outline" (click)="goToGarage()">
+      Ir a Mi garaje
+    </ion-button>
+  </main>
+
+  <app-loading-spinner *ngIf="loading" label="Cargando personalizacion..."></app-loading-spinner>
+  <app-empty-state
+    *ngIf="!loading && !summary && !errorMessage"
+    icon="F1"
+    title="Coche no encontrado"
+    message="El coche no existe o no esta disponible."
+  ></app-empty-state>
+</ion-content>

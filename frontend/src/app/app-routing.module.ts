@@ -13,7 +13,22 @@ const routes: Routes = [
   },
   {
     path: 'catalogo',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'coches/:id',
+    loadChildren: () => import('./pages/car-detail/car-detail.module').then(m => m.CarDetailPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'garaje',
+    loadChildren: () => import('./pages/garage/garage.module').then(m => m.GaragePageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'personalizar/:id',
+    loadChildren: () => import('./pages/customize/customize.module').then(m => m.CustomizePageModule),
     canActivate: [AuthGuard]
   },
   {

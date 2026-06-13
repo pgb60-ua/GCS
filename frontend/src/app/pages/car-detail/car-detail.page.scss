@@ -1,0 +1,69 @@
+.detail-shell {
+  --background: #0d0d0d;
+}
+
+.detail-layout {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-heading {
+  margin-bottom: 1rem;
+  .kicker {
+    color: #e10600;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+  h1 {
+    color: #fff;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+  }
+}
+
+.car-image {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  display: block;
+  border: 1px solid #2a2a2a;
+}
+
+.info-card {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  .lead {
+    color: #b0b0b0;
+    font-size: 0.95rem;
+    margin: 0 0 1rem;
+    line-height: 1.5;
+  }
+  .price-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span {
+      color: #888;
+      font-size: 0.85rem;
+    }
+    strong {
+      color: #e10600;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.error {
+  color: #ff4d4d;
+  margin-bottom: 1rem;
+}

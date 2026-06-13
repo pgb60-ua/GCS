@@ -1,13 +1,11 @@
-<app-header title="Kinetic Lab"></app-header>
+<app-header title="Mi garaje"></app-header>
 
-<ion-content [fullscreen]="true" class="catalog-shell">
-  <main class="catalog-layout">
+<ion-content [fullscreen]="true" class="garage-shell">
+  <main class="garage-layout">
     <section class="page-heading">
-      <p class="kicker">Active configuration</p>
-      <h1>Catalogo GCS</h1>
-      <p class="lead">
-        Sesion iniciada como {{ currentUser?.nombre }}. Selecciona un coche base para personalizarlo.
-      </p>
+      <p class="kicker">Mis configuraciones</p>
+      <h1>Mi garaje</h1>
+      <p class="lead">Coches personalizados guardados.</p>
     </section>
 
     <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
@@ -19,19 +17,21 @@
           <h3>{{ car.nomenclatura }}</h3>
           <p>{{ car.equipoF1 }} &middot; {{ car.temporada }}</p>
           <div class="price-strip">
-            <span>Precio base</span>
-            <strong>{{ car.precioBase | currency:'EUR' }}</strong>
+            <span>Total</span>
+            <strong>{{ car.precioTotal | currency:'EUR' }}</strong>
           </div>
+          <p class="date">{{ car.createdAt | date:'short' }}</p>
         </div>
+        <ion-button fill="clear" size="small">Continuar editando</ion-button>
       </article>
     </div>
 
-    <app-loading-spinner *ngIf="loading" label="Cargando catalogo..."></app-loading-spinner>
+    <app-loading-spinner *ngIf="loading" label="Cargando garaje..."></app-loading-spinner>
     <app-empty-state
       *ngIf="!loading && cars.length === 0 && !errorMessage"
       icon="F1"
-      title="Catalogo vacio"
-      message="No hay coches base disponibles en este momento."
+      title="Garaje vacio"
+      message="Aun no tienes coches personalizados. Ve al catalogo y personaliza uno."
     ></app-empty-state>
   </main>
 </ion-content>
