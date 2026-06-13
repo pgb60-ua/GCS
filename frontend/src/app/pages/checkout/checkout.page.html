@@ -1,0 +1,76 @@
+<app-header title="Checkout"></app-header>
+
+<ion-content [fullscreen]="true" class="checkout-shell">
+  <main class="checkout-layout">
+    <app-loading-spinner *ngIf="loading" label="Cargando checkout..."></app-loading-spinner>
+
+    <ng-container *ngIf="!loading && summary">
+      <section class="page-heading">
+        <p class="kicker">Compra simulada</p>
+        <h1>{{ summary.nomenclatura }}</h1>
+        <p class="lead">{{ summary.equipoF1 }} &middot; {{ summary.temporada }}</p>
+      </section>
+
+      <section class="checkout-grid">
+        <article class="summary-card">
+          <img
+            *ngIf="summary.imagenUrl"
+            [src]="summary.imagenUrl"
+            [alt]="summary.nomenclatura"
+            class="car-image"
+            (error)="$any($event.target).src='assets/shapes.svg'"
+          />
+
+          <div class="total-row">
+            <span>Total</span>
+            <strong>{{ summary.precioTotal | currency:'EUR' }}</strong>
+          </div>
+
+          <div class="parts-list">
+            <h2>Piezas seleccionadas</h2>
+            <p *ngIf="summary.piezas.length === 0">Este coche no tiene piezas adicionales.</p>
+            <div class="part-item" *ngFor="let part of summary.piezas">
+              <div>
+                <strong>{{ part.nombre }}</strong>
+                <span>{{ part.tipoPieza }} &middot; Cantidad {{ part.cantidad }}</span>
+              </div>
+              <span>{{ part.subtotal | currency:'EUR' }}</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="payment-card">
+          <h2>Metodo de pago</h2>
+          <ion-list lines="none">
+            <ion-item>
+              <ion-select label="Pago simulado" label-placement="stacked" [(ngModel)]="metodoPago" name="metodoPago">
+                <ion-select-option *ngFor="let method of paymentMethods" [value]="method">
+                  {{ method }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+
+          <p class="demo-note">La compra se marca como PAGADO para la demo.</p>
+          <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+          <ion-button expand="block" (click)="confirmPurchase()" [disabled]="submitting || summary.esBase">
+            <app-loading-spinner *ngIf="submitting"></app-loading-spinner>
+            <span *ngIf="!submitting">Confirmar compra</span>
+          </ion-button>
+          <ion-button expand="block" fill="outline" (click)="goBack()" [disabled]="submitting">
+            Volver a personalizacion
+          </ion-button>
+        </article>
+      </section>
+    </ng-container>
+
+    <app-empty-state
+      *ngIf="!loading && !summary && !errorMessage"
+      icon="F1"
+      title="Checkout no disponible"
+      message="No se ha encontrado el coche seleccionado."
+    ></app-empty-state>
+    <p class="error" *ngIf="!loading && !summary && errorMessage">{{ errorMessage }}</p>
+  </main>
+</ion-content>

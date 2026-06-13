@@ -79,4 +79,9 @@ export class CustomizePage {
   goToGarage(): void {
     this.router.navigateByUrl('/garaje', { replaceUrl: true });
   }
+
+  goToCheckout(): void {
+    if (!this.summary) return;
+    this.router.navigateByUrl(`/checkout/${this.summary.id}`);
+  }
 }

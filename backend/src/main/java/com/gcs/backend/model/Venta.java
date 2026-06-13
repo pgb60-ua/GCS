@@ -25,15 +25,16 @@ public class Venta {
     private Usuario usuario;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "coche_id")
+    @JoinColumn(name = "coche_id", unique = true)
     @JsonIgnore
     private Coche coche;
 
     @Column(name = "monto_total")
     private BigDecimal montoTotal;
-    
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "estado_pago")
-    private String estadoPago;
+    private EstadoPago estadoPago;
     
     @Column(name = "metodo_pago")
     private String metodoPago;
