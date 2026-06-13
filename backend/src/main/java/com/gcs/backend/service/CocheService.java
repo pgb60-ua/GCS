@@ -27,14 +27,18 @@ public class CocheService {
     private final UsuarioRepository usuarioRepository;
     private final CochePiezaRepository cochePiezaRepository;
 
-    public CocheService(CocheRepository cocheRepository, UsuarioRepository usuarioRepository, CochePiezaRepository cochePiezaRepository) {
+    public CocheService(CocheRepository cocheRepository,
+                        UsuarioRepository usuarioRepository,
+                        CochePiezaRepository cochePiezaRepository) {
         this.cocheRepository = cocheRepository;
         this.usuarioRepository = usuarioRepository;
         this.cochePiezaRepository = cochePiezaRepository;
     }
 
     public List<CocheResponse> findAll() {
-        return cocheRepository.findAll().stream().map(this::toResponse).toList();
+        return cocheRepository.findAll().stream()
+                .map(this::toResponse)
+                .toList();
     }
 
     public CocheResponse findById(UUID id) {
@@ -42,24 +46,30 @@ public class CocheService {
     }
 
     public List<CocheResponse> findByEsBaseTrue() {
-        return cocheRepository.findByEsBaseTrue().stream().map(this::toResponse).toList();
+        return cocheRepository.findByEsBaseTrue().stream()
+                .map(this::toResponse)
+                .toList();
     }
 
     public List<CocheResponse> findByUsuarioId(UUID usuarioId) {
         if (!usuarioRepository.existsById(usuarioId)) {
             throw new ResourceNotFoundException("Usuario no encontrado");
         }
-        return cocheRepository.findByUsuarioId(usuarioId).stream().map(this::toResponse).toList();
+        return cocheRepository.findByUsuarioId(usuarioId).stream()
+                .map(this::toResponse)
+                .toList();
     }
 
     public List<CocheResponse> findByEquipoF1IgnoreCase(String equipoF1) {
-        return cocheRepository.findByEquipoF1IgnoreCase(equipoF1).stream().map(this::toResponse).toList();
+        return cocheRepository.findByEquipoF1IgnoreCase(equipoF1).stream()
+                .map(this::toResponse)
+                .toList();
     }
 
     public CocheResponse create(CocheRequest request) {
         Coche coche = new Coche();
         applyRequest(coche, request);
-        if (coche.getPrecioTotal() == null) {
+        if (Boolean.TRUE.equals(coche.getEsBase())) {
             coche.setPrecioTotal(coche.getPrecioBase());
         }
         return toResponse(cocheRepository.save(coche));
@@ -68,6 +78,9 @@ public class CocheService {
     public CocheResponse update(UUID id, CocheRequest request) {
         Coche coche = findEntityById(id);
         applyRequest(coche, request);
+        if (Boolean.TRUE.equals(coche.getEsBase())) {
+            coche.setPrecioTotal(coche.getPrecioBase());
+        }
         return toResponse(cocheRepository.save(coche));
     }
 
@@ -157,13 +170,12 @@ public class CocheService {
     }
 
     public void deleteById(UUID id) {
-        if (!cocheRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Coche no encontrado");
-        }
-        cocheRepository.deleteById(id);
+        Coche coche = cocheRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Coche no encontrado"));
+        cocheRepository.delete(coche);
     }
 
-    private Coche findEntityById(UUID id) {
+    public Coche findEntityById(UUID id) {
         return cocheRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Coche no encontrado"));
     }
@@ -175,7 +187,9 @@ public class CocheService {
         coche.setDescripcion(request.descripcion());
         coche.setPrecioBase(request.precioBase());
         coche.setImagenUrl(request.imagenUrl());
-        coche.setEsBase(request.esBase() != null ? request.esBase() : false);
+        if (request.esBase() != null) {
+            coche.setEsBase(request.esBase());
+        }
         if (request.usuarioId() != null) {
             Usuario usuario = usuarioRepository.findById(request.usuarioId())
                     .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
@@ -183,7 +197,7 @@ public class CocheService {
         }
     }
 
-    private CocheResponse toResponse(Coche coche) {
+    public CocheResponse toResponse(Coche coche) {
         return new CocheResponse(
                 coche.getId(),
                 coche.getNomenclatura(),

@@ -5,6 +5,7 @@ import com.gcs.backend.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.math.BigDecimal;
 
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 public class DataInitializer {
 
     @Bean
+    @Order(1)
     CommandLineRunner initData(
             UsuarioRepository usuarioRepo,
             CocheRepository cocheRepo,

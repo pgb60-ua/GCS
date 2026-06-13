@@ -3,13 +3,13 @@ export interface Car {
   nomenclatura: string;
   equipoF1: string;
   temporada: string;
-  descripcion: string;
+  descripcion: string | null;
   precioBase: number;
   precioTotal: number;
-  imagenUrl: string;
+  imagenUrl: string | null;
   esBase: boolean;
-  usuarioId: string | null;
-  createdAt: string;
+  usuarioId?: string | null;
+  createdAt?: string;
 }
 
 export interface CarSummary {
@@ -17,12 +17,12 @@ export interface CarSummary {
   nomenclatura: string;
   equipoF1: string;
   temporada: string;
-  descripcion: string;
+  descripcion: string | null;
   precioBase: number;
   precioTotal: number;
-  imagenUrl: string;
+  imagenUrl: string | null;
   esBase: boolean;
-  usuarioId: string | null;
+  usuarioId?: string | null;
   piezas: CarPartSummary[];
 }
 
@@ -33,5 +33,5 @@ export interface CarPartSummary {
   precio: number;
   cantidad: number;
   subtotal: number;
-  notas: string;
+  notas: string | null;
 }

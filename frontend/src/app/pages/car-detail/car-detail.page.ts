@@ -13,6 +13,7 @@ import { Car } from '../../core/models/car.model';
 export class CarDetailPage {
   car: Car | null = null;
   loading = false;
+  error = false;
   errorMessage = '';
   duplicating = false;
 
@@ -24,9 +25,11 @@ export class CarDetailPage {
   ) {}
 
   ionViewWillEnter(): void {
+    this.error = false;
     this.errorMessage = '';
     const id = this.route.snapshot.paramMap.get('id');
     if (!id) {
+      this.error = true;
       this.errorMessage = 'ID de coche no valido.';
       return;
     }
@@ -38,6 +41,7 @@ export class CarDetailPage {
       },
       error: (err) => {
         this.loading = false;
+        this.error = true;
         this.errorMessage = err?.error?.message ?? 'No se ha podido cargar el coche.';
       },
     });
@@ -62,6 +66,7 @@ export class CarDetailPage {
       },
       error: (err) => {
         this.duplicating = false;
+        this.error = true;
         this.errorMessage = err?.error?.message ?? 'No se ha podido personalizar el coche.';
       },
     });

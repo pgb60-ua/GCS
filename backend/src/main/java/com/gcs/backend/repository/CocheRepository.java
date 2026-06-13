@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Repository
 public interface CocheRepository extends JpaRepository<Coche, UUID> {
+
     List<Coche> findByEsBaseTrue();
 
     List<Coche> findByUsuarioId(UUID usuarioId);

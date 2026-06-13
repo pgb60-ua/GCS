@@ -1,35 +1,63 @@
 <app-header title="Detalle del coche"></app-header>
 
 <ion-content [fullscreen]="true" class="detail-shell">
-  <main class="detail-layout" *ngIf="!loading && car">
-    <section class="page-heading">
-      <p class="kicker">{{ car.equipoF1 }} &middot; {{ car.temporada }}</p>
-      <h1>{{ car.nomenclatura }}</h1>
-    </section>
+  <main class="detail-layout">
+    <app-loading-spinner *ngIf="loading" label="Cargando coche..."></app-loading-spinner>
 
-    <img *ngIf="car.imagenUrl" [src]="car.imagenUrl" [alt]="car.nomenclatura" class="car-image" (error)="$event.target.src='https://placehold.co/640x360/333/FFF?text=Imagen+no+disponible'" />
+    <app-empty-state
+      *ngIf="error && !loading"
+      icon="!"
+      title="Error al cargar el coche"
+      [message]="errorMessage || 'No se pudo conectar con el servidor. Comprueba que el backend esta activo.'"
+    ></app-empty-state>
 
-    <section class="info-card">
-      <p class="lead">{{ car.descripcion }}</p>
-      <div class="price-strip">
-        <span>Precio base</span>
-        <strong>{{ car.precioBase | currency:'EUR' }}</strong>
+    <app-empty-state
+      *ngIf="!loading && !car && !error"
+      icon="F1"
+      title="Coche no encontrado"
+      message="El coche solicitado no existe o no esta disponible."
+    ></app-empty-state>
+
+    <ng-container *ngIf="car && !loading">
+      <div class="back-nav">
+        <ion-button fill="clear" routerLink="/catalogo" class="back-btn">
+          <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+          Catalogo
+        </ion-button>
       </div>
-    </section>
 
-    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <article class="car-detail-card">
+        <div class="car-image-wrap">
+          <img
+            [src]="car.imagenUrl || 'assets/shapes.svg'"
+            [alt]="car.nomenclatura"
+            class="car-image"
+            (error)="$any($event.target).src='assets/shapes.svg'"
+          />
+        </div>
 
-    <ion-button expand="block" (click)="personalize()" [disabled]="duplicating">
-      <app-loading-spinner *ngIf="duplicating"></app-loading-spinner>
-      <span *ngIf="!duplicating">Personalizar</span>
-    </ion-button>
+        <div class="car-info">
+          <p class="kicker">{{ car.equipoF1 }}</p>
+          <h1>{{ car.nomenclatura }}</h1>
+          <p class="season-badge">Temporada {{ car.temporada }}</p>
+          <p class="description">{{ car.descripcion }}</p>
+
+          <div class="price-block">
+            <span class="price-label">Precio base</span>
+            <span class="price-value">{{ car.precioBase | number:'1.0-0' }} €</span>
+          </div>
+
+          <div class="detail-actions">
+            <ion-button expand="block" class="cta-btn" (click)="personalize()" [disabled]="duplicating">
+              <app-loading-spinner *ngIf="duplicating"></app-loading-spinner>
+              <span *ngIf="!duplicating">Personalizar</span>
+            </ion-button>
+            <ion-button expand="block" fill="outline" class="secondary-btn" routerLink="/catalogo">
+              Volver al catalogo
+            </ion-button>
+          </div>
+        </div>
+      </article>
+    </ng-container>
   </main>
-
-  <app-loading-spinner *ngIf="loading" label="Cargando coche..."></app-loading-spinner>
-  <app-empty-state
-    *ngIf="!loading && !car && !errorMessage"
-    icon="F1"
-    title="Coche no encontrado"
-    message="El coche solicitado no existe o no esta disponible."
-  ></app-empty-state>
 </ion-content>

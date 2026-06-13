@@ -45,8 +45,8 @@ public class CocheController {
     }
 
     @GetMapping("/{id}")
-    public CocheResponse getById(@PathVariable UUID id) {
-        return service.findById(id);
+    public ResponseEntity<CocheResponse> getById(@PathVariable UUID id) {
+        return ResponseEntity.ok(service.findById(id));
     }
 
     @GetMapping("/{id}/resumen")
@@ -60,13 +60,15 @@ public class CocheController {
     }
 
     @PostMapping("/{cocheBaseId}/duplicar")
-    public ResponseEntity<CocheResponse> duplicate(@PathVariable UUID cocheBaseId, @RequestBody DuplicarCocheRequest request) {
+    public ResponseEntity<CocheResponse> duplicate(@PathVariable UUID cocheBaseId,
+                                                   @RequestBody DuplicarCocheRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.duplicate(cocheBaseId, request));
     }
 
     @PutMapping("/{id}")
-    public CocheResponse update(@PathVariable UUID id, @Valid @RequestBody CocheRequest request) {
-        return service.update(id, request);
+    public ResponseEntity<CocheResponse> update(@PathVariable UUID id,
+                                                @Valid @RequestBody CocheRequest request) {
+        return ResponseEntity.ok(service.update(id, request));
     }
 
     @PatchMapping("/{id}")

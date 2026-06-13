@@ -40,7 +40,7 @@ export class CustomizePage {
         this.loading = false;
         this.summary = summary;
         this.newNomenclatura = summary.nomenclatura;
-        this.newDescripcion = summary.descripcion;
+        this.newDescripcion = summary.descripcion ?? '';
       },
       error: (err) => {
         this.loading = false;

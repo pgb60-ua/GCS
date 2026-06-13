@@ -8,33 +8,39 @@ import { Car, CarSummary } from '../models/car.model';
   providedIn: 'root',
 })
 export class CarService {
+  private readonly baseUrl = `${environment.apiUrl}/coches`;
+
   constructor(private http: HttpClient) {}
 
-  getBaseCars(): Observable<Car[]> {
-    return this.http.get<Car[]>(`${environment.apiUrl}/coches/base`);
+  getAllCars(): Observable<Car[]> {
+    return this.http.get<Car[]>(this.baseUrl);
   }
 
-  getAllCars(): Observable<Car[]> {
-    return this.http.get<Car[]>(`${environment.apiUrl}/coches`);
+  getBaseCars(): Observable<Car[]> {
+    return this.http.get<Car[]>(`${this.baseUrl}/base`);
   }
 
   getCarById(id: string): Observable<Car> {
-    return this.http.get<Car>(`${environment.apiUrl}/coches/${id}`);
+    return this.http.get<Car>(`${this.baseUrl}/${id}`);
   }
 
   getCarsByUser(userId: string): Observable<Car[]> {
-    return this.http.get<Car[]>(`${environment.apiUrl}/coches/usuario/${userId}`);
+    return this.http.get<Car[]>(`${this.baseUrl}/usuario/${userId}`);
+  }
+
+  getCarsByTeam(equipoF1: string): Observable<Car[]> {
+    return this.http.get<Car[]>(`${this.baseUrl}/equipo/${encodeURIComponent(equipoF1)}`);
   }
 
   getCarSummary(id: string): Observable<CarSummary> {
-    return this.http.get<CarSummary>(`${environment.apiUrl}/coches/${id}/resumen`);
+    return this.http.get<CarSummary>(`${this.baseUrl}/${id}/resumen`);
   }
 
   duplicateBaseCar(baseCarId: string, userId: string): Observable<Car> {
-    return this.http.post<Car>(`${environment.apiUrl}/coches/${baseCarId}/duplicar`, { usuarioId: userId });
+    return this.http.post<Car>(`${this.baseUrl}/${baseCarId}/duplicar`, { usuarioId: userId });
   }
 
   patchCar(id: string, payload: Partial<Car>): Observable<Car> {
-    return this.http.patch<Car>(`${environment.apiUrl}/coches/${id}`, payload);
+    return this.http.patch<Car>(`${this.baseUrl}/${id}`, payload);
   }
 }

@@ -2,36 +2,118 @@
 
 <ion-content [fullscreen]="true" class="catalog-shell">
   <main class="catalog-layout">
+
+    <!-- Cabecera -->
     <section class="page-heading">
-      <p class="kicker">Active configuration</p>
-      <h1>Catalogo GCS</h1>
-      <p class="lead">
-        Sesion iniciada como {{ currentUser?.nombre }}. Selecciona un coche base para personalizarlo.
+      <p class="kicker">Catalogo de vehiculos</p>
+      <h1>Monoplazas F1</h1>
+      <p class="lead" *ngIf="currentUser">
+        Sesion iniciada como {{ currentUser.nombre }}. Selecciona un coche base para personalizar tu configuracion tecnica.
+      </p>
+      <p class="lead" *ngIf="!currentUser">
+        Selecciona un coche base para personalizar tu configuracion tecnica.
       </p>
     </section>
 
-    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    <!-- Barra de busqueda y filtros -->
+    <section class="filter-bar">
+      <div class="search-wrap">
+        <ion-searchbar
+          placeholder="Buscar por nombre, equipo o temporada..."
+          [debounce]="300"
+          (ionInput)="onSearchChange($event)"
+          class="gcs-searchbar"
+        ></ion-searchbar>
+      </div>
 
-    <div class="car-grid" *ngIf="!loading && cars.length > 0">
-      <article class="car-card" *ngFor="let car of cars" (click)="openCar(car.id)">
-        <img *ngIf="car.imagenUrl" [src]="car.imagenUrl" [alt]="car.nomenclatura" (error)="$event.target.src='https://placehold.co/640x360/333/FFF?text=Imagen+no+disponible'" />
-        <div class="card-body">
-          <h3>{{ car.nomenclatura }}</h3>
-          <p>{{ car.equipoF1 }} &middot; {{ car.temporada }}</p>
-          <div class="price-strip">
-            <span>Precio base</span>
-            <strong>{{ car.precioBase | currency:'EUR' }}</strong>
+      <div class="team-filters" *ngIf="teams.length > 0 && !loading">
+        <button
+          class="team-chip"
+          [class.active]="selectedTeam === ''"
+          (click)="selectTeam('')"
+        >
+          Todos
+        </button>
+        <button
+          *ngFor="let team of teams"
+          class="team-chip"
+          [class.active]="selectedTeam === team"
+          (click)="selectTeam(team)"
+        >
+          {{ team }}
+        </button>
+      </div>
+    </section>
+
+    <!-- Estado de carga -->
+    <section class="state-section" *ngIf="loading">
+      <div class="cars-grid loading-grid">
+        <div class="car-skeleton" *ngFor="let i of [1,2,3,4,5,6]"></div>
+      </div>
+    </section>
+
+    <!-- Estado de error -->
+    <app-empty-state
+      *ngIf="error && !loading"
+      icon="!"
+      title="Error de conexion"
+      [message]="errorMessage || 'No se puede conectar con el servidor. Asegurate de que el backend esta activo en localhost:8080.'"
+    ></app-empty-state>
+
+    <!-- Estado vacio (sin resultados) -->
+    <app-empty-state
+      *ngIf="!loading && !error && filteredCars.length === 0"
+      icon="0"
+      title="Sin resultados"
+      message="No hay coches que coincidan con tu busqueda. Prueba con otro filtro."
+    ></app-empty-state>
+
+    <!-- Grid de coches -->
+    <section class="cars-grid" *ngIf="!loading && !error && filteredCars.length > 0">
+      <article
+        class="car-card"
+        *ngFor="let car of filteredCars"
+        (click)="openCar(car)"
+        role="button"
+        tabindex="0"
+        (keydown.enter)="openCar(car)"
+      >
+        <div class="car-image-wrap">
+          <img
+            [src]="car.imagenUrl || 'assets/shapes.svg'"
+            [alt]="car.nomenclatura"
+            class="car-image"
+            (error)="$any($event.target).src='assets/shapes.svg'"
+            loading="lazy"
+          />
+          <div class="car-overlay">
+            <span class="season-tag">{{ car.temporada }}</span>
+          </div>
+        </div>
+
+        <div class="car-body">
+          <p class="team-name">{{ car.equipoF1 }}</p>
+          <h2 class="car-name">{{ car.nomenclatura }}</h2>
+          <p class="car-desc">{{ car.descripcion | slice:0:100 }}{{ (car.descripcion?.length ?? 0) > 100 ? '...' : '' }}</p>
+        </div>
+
+        <div class="car-footer">
+          <div class="price-block">
+            <span class="price-label">Precio base</span>
+            <span class="price-value">{{ formatPrice(car.precioBase) }}</span>
+          </div>
+          <div class="cta-arrow">
+            <ion-icon name="arrow-forward-outline"></ion-icon>
           </div>
         </div>
       </article>
-    </div>
+    </section>
 
-    <app-loading-spinner *ngIf="loading" label="Cargando catalogo..."></app-loading-spinner>
-    <app-empty-state
-      *ngIf="!loading && cars.length === 0 && !errorMessage"
-      icon="F1"
-      title="Catalogo vacio"
-      message="No hay coches base disponibles en este momento."
-    ></app-empty-state>
+    <!-- Contador de resultados -->
+    <p class="results-count" *ngIf="!loading && !error && filteredCars.length > 0">
+      {{ filteredCars.length }} {{ filteredCars.length === 1 ? 'vehiculo' : 'vehiculos' }}
+      <span *ngIf="selectedTeam"> · {{ selectedTeam }}</span>
+    </p>
+
   </main>
 </ion-content>
