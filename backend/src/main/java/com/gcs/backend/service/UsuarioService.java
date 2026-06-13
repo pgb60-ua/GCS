@@ -2,6 +2,7 @@ package com.gcs.backend.service;
 
 import com.gcs.backend.dto.LoginRequest;
 import com.gcs.backend.dto.LoginResponse;
+import com.gcs.backend.dto.UsuarioPerfilUpdateRequest;
 import com.gcs.backend.dto.UsuarioRequest;
 import com.gcs.backend.dto.UsuarioResponse;
 import com.gcs.backend.exception.BadRequestException;
@@ -56,6 +57,24 @@ public class UsuarioService {
 
         applyRequest(usuario, request);
         usuario.setEmail(email);
+        return toResponse(repository.save(usuario));
+    }
+
+    public UsuarioResponse updateProfile(UUID id, UsuarioPerfilUpdateRequest request) {
+        Usuario usuario = findEntityById(id);
+        String email = normalizeEmail(request.email());
+        repository.findByEmail(email)
+                .filter(existing -> !existing.getId().equals(id))
+                .ifPresent(existing -> {
+                    throw new BadRequestException("Ya existe un usuario con ese email");
+                });
+
+        usuario.setNombre(request.nombre().trim());
+        usuario.setEmail(email);
+        if (request.password() != null && !request.password().isBlank()) {
+            usuario.setPassword(request.password());
+        }
+
         return toResponse(repository.save(usuario));
     }
 
