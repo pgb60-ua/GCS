@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { SharedModule } from '../../shared/shared.module';
-import { CarDetailPageRoutingModule } from './car-detail-routing.module';
-import { CarDetailPage } from './car-detail.page';
+import { GaragePageRoutingModule } from './garage-routing.module';
+import { GaragePage } from './garage.page';
 
 @NgModule({
   imports: [
@@ -12,8 +12,8 @@ import { CarDetailPage } from './car-detail.page';
     FormsModule,
     IonicModule,
     SharedModule,
-    CarDetailPageRoutingModule,
+    GaragePageRoutingModule,
   ],
-  declarations: [CarDetailPage],
+  declarations: [GaragePage],
 })
-export class CarDetailPageModule {}
+export class GaragePageModule {}

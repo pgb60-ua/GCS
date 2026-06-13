@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/catalogo"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Mi garaje</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="garage-shell">
+  <main class="garage-layout">
+    <section class="page-heading">
+      <p class="kicker">Mis configuraciones</p>
+      <h1>Mi garaje</h1>
+      <p class="lead">Coches personalizados guardados.</p>
+    </section>
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <div class="car-grid" *ngIf="!loading && cars.length > 0">
+      <article
+        class="car-card"
+        *ngFor="let car of cars"
+        (click)="openCar(car.id)"
+      >
+        <img
+          *ngIf="car.imagenUrl"
+          [src]="car.imagenUrl"
+          [alt]="car.nomenclatura"
+          (error)="$event.target.src='https://placehold.co/640x360/333/FFF?text=Imagen+no+disponible'"
+        />
+        <div class="card-body">
+          <h3>{{ car.nomenclatura }}</h3>
+          <p>{{ car.equipoF1 }} &middot; {{ car.temporada }}</p>
+          <div class="price-strip">
+            <span>Total</span>
+            <strong>{{ car.precioTotal | currency:'EUR' }}</strong>
+          </div>
+          <p class="date">{{ car.createdAt | date:'short' }}</p>
+        </div>
+        <ion-button fill="clear" size="small">Continuar editando</ion-button>
+      </article>
+    </div>
+
+    <app-loading-spinner
+      *ngIf="loading"
+      label="Cargando garaje..."
+    ></app-loading-spinner>
+    <app-empty-state
+      *ngIf="!loading && cars.length === 0 && !errorMessage"
+      icon="F1"
+      title="Garaje vacio"
+      message="Aun no tienes coches personalizados. Ve al catalogo y personaliza uno."
+    ></app-empty-state>
+  </main>
+</ion-content>

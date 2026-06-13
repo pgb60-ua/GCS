@@ -21,6 +21,7 @@ export class HomePage implements OnDestroy {
   searchQuery = '';
   loading = true;
   error = false;
+  errorMessage = '';
 
   private loadTrigger$ = new Subject<void>();
   private sub: Subscription;
@@ -38,10 +39,13 @@ export class HomePage implements OnDestroy {
         this.teams = [...new Set(cars.map(c => c.equipoF1))].sort();
         this.applyFilters();
         this.loading = false;
+        this.error = false;
+        this.errorMessage = '';
       },
-      error: () => {
+      error: (err) => {
         this.error = true;
         this.loading = false;
+        this.errorMessage = err?.error?.message ?? 'No se ha podido cargar el catalogo.';
       }
     });
   }
@@ -58,6 +62,7 @@ export class HomePage implements OnDestroy {
   loadCars(): void {
     this.loading = true;
     this.error = false;
+    this.errorMessage = '';
     this.loadTrigger$.next();
   }
 
