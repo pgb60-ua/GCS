@@ -32,7 +32,7 @@ Lo que falta o conviene completar antes de empezar el frontend:
 
 ---
 
-# Persona 1 - Javier - Base tÃ©cnica, usuarios, login y estructura de app
+# Persona 1 - Base tÃ©cnica, usuarios, login y estructura de app
 
 ## Backend
 
@@ -236,7 +236,7 @@ Documentar:
 
 ---
 
-# Persona 3 - Detalle de coche, duplicar coche base y garaje del usuario
+# Persona 3 - Javier - Detalle de coche, duplicar coche base y garaje del usuario
 
 ## Backend
 
