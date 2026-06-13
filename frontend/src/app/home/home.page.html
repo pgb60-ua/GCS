@@ -7,7 +7,12 @@
     <section class="page-heading">
       <p class="kicker">Catalogo de vehiculos</p>
       <h1>Monoplazas F1</h1>
-      <p class="lead">Selecciona un coche base para personalizar tu configuracion tecnica.</p>
+      <p class="lead" *ngIf="currentUser">
+        Sesion iniciada como {{ currentUser.nombre }}. Selecciona un coche base para personalizar tu configuracion tecnica.
+      </p>
+      <p class="lead" *ngIf="!currentUser">
+        Selecciona un coche base para personalizar tu configuracion tecnica.
+      </p>
     </section>
 
     <!-- Barra de busqueda y filtros -->
@@ -52,7 +57,7 @@
       *ngIf="error && !loading"
       icon="!"
       title="Error de conexion"
-      message="No se puede conectar con el servidor. Asegurate de que el backend esta activo en localhost:8080."
+      [message]="errorMessage || 'No se puede conectar con el servidor. Asegurate de que el backend esta activo en localhost:8080.'"
     ></app-empty-state>
 
     <!-- Estado vacio (sin resultados) -->

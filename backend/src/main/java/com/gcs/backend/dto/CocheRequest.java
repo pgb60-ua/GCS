@@ -1,34 +1,30 @@
 package com.gcs.backend.dto;
 
-import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Data
-@NoArgsConstructor
-public class CocheRequest {
+public record CocheRequest(
+        @NotBlank(message = "La nomenclatura es obligatoria")
+        String nomenclatura,
 
-    @NotBlank(message = "La nomenclatura es obligatoria")
-    private String nomenclatura;
+        @NotBlank(message = "El equipo de F1 es obligatorio")
+        String equipoF1,
 
-    @NotBlank(message = "El equipo es obligatorio")
-    private String equipoF1;
+        @NotBlank(message = "La temporada es obligatoria")
+        String temporada,
 
-    @NotBlank(message = "La temporada es obligatoria")
-    private String temporada;
+        String descripcion,
 
-    private String descripcion;
+        @PositiveOrZero(message = "El precio base debe ser positivo o cero")
+        BigDecimal precioBase,
 
-    @DecimalMin(value = "0.0", message = "El precio base debe ser positivo o cero")
-    private BigDecimal precioBase;
+        String imagenUrl,
 
-    private String imagenUrl;
+        Boolean esBase,
 
-    private Boolean esBase;
-
-    private UUID usuarioId;
+        UUID usuarioId
+) {
 }

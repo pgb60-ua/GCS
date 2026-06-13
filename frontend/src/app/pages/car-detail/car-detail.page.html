@@ -1,14 +1,21 @@
-<app-header title="Detalle"></app-header>
+<app-header title="Detalle del coche"></app-header>
 
 <ion-content [fullscreen]="true" class="detail-shell">
   <main class="detail-layout">
-    <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+    <app-loading-spinner *ngIf="loading" label="Cargando coche..."></app-loading-spinner>
 
     <app-empty-state
       *ngIf="error && !loading"
       icon="!"
       title="Error al cargar el coche"
-      message="No se pudo conectar con el servidor. Comprueba que el backend esta activo."
+      [message]="errorMessage || 'No se pudo conectar con el servidor. Comprueba que el backend esta activo.'"
+    ></app-empty-state>
+
+    <app-empty-state
+      *ngIf="!loading && !car && !error"
+      icon="F1"
+      title="Coche no encontrado"
+      message="El coche solicitado no existe o no esta disponible."
     ></app-empty-state>
 
     <ng-container *ngIf="car && !loading">
@@ -41,7 +48,11 @@
           </div>
 
           <div class="detail-actions">
-            <ion-button expand="block" class="cta-btn" routerLink="/catalogo">
+            <ion-button expand="block" class="cta-btn" (click)="personalize()" [disabled]="duplicating">
+              <app-loading-spinner *ngIf="duplicating"></app-loading-spinner>
+              <span *ngIf="!duplicating">Personalizar</span>
+            </ion-button>
+            <ion-button expand="block" fill="outline" class="secondary-btn" routerLink="/catalogo">
               Volver al catalogo
             </ion-button>
           </div>
