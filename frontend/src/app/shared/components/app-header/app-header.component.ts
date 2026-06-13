@@ -17,4 +17,8 @@ export class AppHeaderComponent {
     this.authService.logout();
     this.router.navigateByUrl('/login', { replaceUrl: true });
   }
+
+  goToProfile(): void {
+    this.router.navigateByUrl('/perfil');
+  }
 }

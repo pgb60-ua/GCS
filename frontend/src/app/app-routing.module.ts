@@ -42,6 +42,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'perfil',
+    loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'

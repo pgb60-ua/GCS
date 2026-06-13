@@ -1,6 +1,7 @@
 package com.gcs.backend.controller;
 
 import com.gcs.backend.dto.UsuarioRequest;
+import com.gcs.backend.dto.UsuarioPerfilUpdateRequest;
 import com.gcs.backend.dto.UsuarioResponse;
 import com.gcs.backend.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -37,8 +38,11 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public UsuarioResponse update(@PathVariable UUID id, @Valid @RequestBody UsuarioRequest request) {
-        return service.update(id, request);
+    public UsuarioResponse update(
+        @PathVariable UUID id,
+        @Valid @RequestBody UsuarioPerfilUpdateRequest request
+    ) {
+        return service.updateProfile(id, request);
     }
 
     @DeleteMapping("/{id}")

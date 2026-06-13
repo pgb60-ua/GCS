@@ -37,6 +37,29 @@ export class AuthService {
     );
   }
 
+  getUserById(userId: string): Observable<User> {
+    return this.http.get<User>(`${environment.apiUrl}/usuarios/${userId}`).pipe(
+      tap((response) => {
+        if (this.currentUserSubject.value?.id === response.id) {
+          this.setCurrentUser(response);
+        }
+      })
+    );
+  }
+
+  updateUserById(
+    userId: string,
+    payload: { nombre: string; email: string; password?: string }
+  ): Observable<User> {
+    return this.http.put<User>(`${environment.apiUrl}/usuarios/${userId}`, payload).pipe(
+      tap((response) => {
+        if (this.currentUserSubject.value?.id === response.id) {
+          this.setCurrentUser(response);
+        }
+      })
+    );
+  }
+
   logout(): void {
     localStorage.removeItem(STORAGE_KEY);
     this.currentUserSubject.next(null);

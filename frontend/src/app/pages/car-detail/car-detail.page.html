@@ -58,6 +58,80 @@
           </div>
         </div>
       </article>
+
+      <section class="reviews-section">
+        <article class="reviews-panel summary-panel">
+          <p class="kicker">Valoraciones</p>
+          <h2>Resenias del coche</h2>
+          <div class="summary-grid" *ngIf="summary">
+            <div class="summary-metric">
+              <span class="label">Media</span>
+              <strong>{{ summary.media | number:'1.1-1' }}</strong>
+              <span class="stars">{{ getStars(summary.media) }}</span>
+            </div>
+            <div class="summary-metric">
+              <span class="label">Total</span>
+              <strong>{{ summary.totalResenias }}</strong>
+              <span class="hint">resenias</span>
+            </div>
+          </div>
+
+          <app-loading-spinner *ngIf="reviewsLoading"></app-loading-spinner>
+
+          <app-empty-state
+            *ngIf="!reviewsLoading && reviews.length === 0"
+            icon="0"
+            title="Aun no hay resenias"
+            message="Se la primera persona en valorar este coche."
+          ></app-empty-state>
+
+          <div class="reviews-list" *ngIf="!reviewsLoading && reviews.length > 0">
+            <article class="review-card" *ngFor="let review of reviews">
+              <div class="review-head">
+                <strong>{{ review.usuarioNombre }}</strong>
+                <span class="stars">{{ getStars(review.puntuacion) }}</span>
+              </div>
+              <p class="comment">{{ review.comentario }}</p>
+              <p class="timestamp">{{ review.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
+            </article>
+          </div>
+        </article>
+
+        <article class="reviews-panel form-panel" *ngIf="currentUser?.rol === 'CLIENTE'">
+          <p class="kicker">Tu opinion</p>
+          <h2>Publicar resenia</h2>
+
+          <ion-item lines="none">
+            <ion-label position="stacked">Puntuacion</ion-label>
+            <ion-select [(ngModel)]="puntuacion" name="puntuacion" interface="popover">
+              <ion-select-option [value]="1">1 estrella</ion-select-option>
+              <ion-select-option [value]="2">2 estrellas</ion-select-option>
+              <ion-select-option [value]="3">3 estrellas</ion-select-option>
+              <ion-select-option [value]="4">4 estrellas</ion-select-option>
+              <ion-select-option [value]="5">5 estrellas</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-label position="stacked">Comentario</ion-label>
+            <ion-textarea
+              [(ngModel)]="comentario"
+              name="comentario"
+              autoGrow="true"
+              rows="4"
+              maxlength="500"
+              placeholder="Cuentalo en al menos 3 caracteres"
+            ></ion-textarea>
+          </ion-item>
+
+          <p class="feedback error" *ngIf="formError">{{ formError }}</p>
+          <p class="feedback success" *ngIf="formSuccess">{{ formSuccess }}</p>
+
+          <ion-button expand="block" (click)="publishReview()" [disabled]="submitLoading">
+            {{ submitLoading ? 'Publicando...' : 'Publicar resenia' }}
+          </ion-button>
+        </article>
+      </section>
     </ng-container>
   </main>
 </ion-content>

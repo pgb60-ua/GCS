@@ -118,6 +118,118 @@
   text-transform: uppercase;
 }
 
+.reviews-section {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+}
+
+.reviews-panel {
+  border: 1px solid rgba(228, 225, 238, 0.12);
+  border-radius: 8px;
+  padding: 20px;
+  background: rgba(24, 24, 27, 0.78);
+}
+
+.reviews-panel h2 {
+  margin: 0 0 14px;
+  color: #ffffff;
+  font-family: var(--gcs-display-font);
+  font-size: 30px;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.summary-metric {
+  border: 1px solid rgba(228, 225, 238, 0.12);
+  border-radius: 8px;
+  background: rgba(9, 9, 11, 0.36);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.summary-metric .label,
+.summary-metric .hint {
+  color: #71717a;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.summary-metric strong {
+  color: #ffffff;
+  font-family: var(--gcs-display-font);
+  font-size: 30px;
+  line-height: 1;
+}
+
+.summary-metric .stars,
+.review-head .stars {
+  color: #ffdb3c;
+  letter-spacing: 0.1em;
+  font-size: 14px;
+}
+
+.reviews-list {
+  display: grid;
+  gap: 10px;
+}
+
+.review-card {
+  border: 1px solid rgba(228, 225, 238, 0.1);
+  border-radius: 8px;
+  background: rgba(9, 9, 11, 0.35);
+  padding: 12px;
+}
+
+.review-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.review-head strong {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.review-card .comment {
+  margin: 8px 0;
+  color: rgba(228, 225, 238, 0.72);
+  line-height: 1.45;
+}
+
+.review-card .timestamp {
+  margin: 0;
+  color: #71717a;
+  font-size: 12px;
+}
+
+.form-panel ion-item {
+  --background: rgba(9, 9, 11, 0.72);
+  --border-radius: 8px;
+  --color: #ffffff;
+  --highlight-color-focused: #29dec9;
+  margin-bottom: 12px;
+  border: 1px solid rgba(228, 225, 238, 0.12);
+  border-radius: 8px;
+}
+
+.form-panel ion-label {
+  --color: #a1a1aa;
+}
 .secondary-btn {
   --border-color: rgba(228, 225, 238, 0.2);
   --color: #a1a1aa;
@@ -128,6 +240,28 @@
   text-transform: uppercase;
 }
 
+.form-panel ion-button {
+  --background: #e10600;
+  --background-hover: #ef4444;
+  --border-radius: 4px;
+  --box-shadow: none;
+  height: 48px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.feedback {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.feedback.error {
+  color: #ffb4ab;
+}
+
+.feedback.success {
+  color: #22c55e;
+}
 .error {
   color: #ff4d4d;
   margin-bottom: 1rem;
@@ -137,5 +271,13 @@
   .car-detail-card {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+
+  .reviews-section {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
   }
 }
