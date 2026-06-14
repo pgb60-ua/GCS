@@ -23,7 +23,7 @@ export class PurchasesPage {
   ) {}
 
   ionViewWillEnter(): void {
-    this.highlightedSaleId = window.history.state?.saleId ?? null;
+    this.highlightedSaleId = this.consumeHighlightedSaleId();
     this.errorMessage = '';
 
     const user = this.authService.getCurrentUser();
@@ -47,5 +47,15 @@ export class PurchasesPage {
 
   openCar(sale: Sale): void {
     this.router.navigateByUrl(`/personalizar/${sale.cocheId}`, { replaceUrl: true });
+  }
+
+  private consumeHighlightedSaleId(): string | null {
+    const saleId = window.history.state?.saleId ?? null;
+    if (saleId) {
+      const nextState = { ...window.history.state };
+      delete nextState.saleId;
+      window.history.replaceState(nextState, document.title, window.location.href);
+    }
+    return saleId;
   }
 }

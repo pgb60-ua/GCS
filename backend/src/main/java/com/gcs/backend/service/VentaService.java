@@ -11,6 +11,7 @@ import com.gcs.backend.model.Venta;
 import com.gcs.backend.repository.CocheRepository;
 import com.gcs.backend.repository.UsuarioRepository;
 import com.gcs.backend.repository.VentaRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -77,7 +78,11 @@ public class VentaService {
         venta.setMontoTotal(resolveMontoTotal(coche));
         venta.setFechaVenta(Timestamp.from(Instant.now()));
 
-        return toResponse(ventaRepository.save(venta));
+        try {
+            return toResponse(ventaRepository.saveAndFlush(venta));
+        } catch (DataIntegrityViolationException exception) {
+            throw new BadRequestException("Este coche ya tiene una venta registrada");
+        }
     }
 
     @Transactional
