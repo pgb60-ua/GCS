@@ -1,52 +1,54 @@
 package com.gcs.backend.controller;
 
-import com.gcs.backend.model.Venta;
+import com.gcs.backend.dto.EstadoRequest;
+import com.gcs.backend.dto.VentaRequest;
+import com.gcs.backend.dto.VentaResponse;
 import com.gcs.backend.service.VentaService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/ventas")
 public class VentaController {
 
-    @Autowired
-    private VentaService service;
+    private final VentaService service;
+
+    public VentaController(VentaService service) {
+        this.service = service;
+    }
 
     @GetMapping
-    public List<Venta> getAll() {
+    public List<VentaResponse> getAll() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Venta> getById(@PathVariable UUID id) {
-        Optional<Venta> entity = service.findById(id);
-        return entity.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public VentaResponse getById(@PathVariable UUID id) {
+        return service.findById(id);
+    }
+
+    @GetMapping("/usuario/{usuarioId}")
+    public List<VentaResponse> getByUsuario(@PathVariable UUID usuarioId) {
+        return service.findByUsuarioId(usuarioId);
     }
 
     @PostMapping
-    public Venta create(@RequestBody Venta entity) {
-        return service.save(entity);
+    public ResponseEntity<VentaResponse> create(@Valid @RequestBody VentaRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Venta> update(@PathVariable UUID id, @RequestBody Venta entity) {
-        if (!service.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        entity.setId(id);
-        return ResponseEntity.ok(service.save(entity));
+    @PatchMapping("/{id}/estado")
+    public VentaResponse updateEstado(@PathVariable UUID id, @Valid @RequestBody EstadoRequest request) {
+        return service.updateEstado(id, request.estadoPago());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
-        if (!service.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }

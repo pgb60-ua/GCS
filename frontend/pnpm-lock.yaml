@@ -9,110 +9,110 @@ importers:
   .:
     dependencies:
       '@angular/animations':
-        specifier: ^20.0.0
+        specifier: ^20.3.25
         version: 20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))
       '@angular/common':
-        specifier: ^20.0.0
+        specifier: ^20.3.25
         version: 20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/compiler':
-        specifier: ^20.0.0
+        specifier: ^20.3.25
         version: 20.3.25
       '@angular/core':
-        specifier: ^20.0.0
+        specifier: ^20.3.25
         version: 20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1)
       '@angular/forms':
-        specifier: ^20.0.0
+        specifier: ^20.3.25
         version: 20.3.25(@angular/common@20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.25(@angular/animations@20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@angular/platform-browser':
-        specifier: ^20.0.0
+        specifier: ^20.3.25
         version: 20.3.25(@angular/animations@20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))
       '@angular/platform-browser-dynamic':
-        specifier: ^20.0.0
+        specifier: ^20.3.25
         version: 20.3.25(@angular/common@20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler@20.3.25)(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.25(@angular/animations@20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1)))
       '@angular/router':
-        specifier: ^20.0.0
+        specifier: ^20.3.25
         version: 20.3.25(@angular/common@20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.25(@angular/animations@20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@ionic/angular':
-        specifier: ^8.0.0
+        specifier: ^8.8.10
         version: 8.8.10(5617e5c8610d1256638f1b6c4095b5e3)
       ionicons:
-        specifier: ^7.0.0
+        specifier: ^7.4.0
         version: 7.4.0
       rxjs:
-        specifier: ~7.8.0
+        specifier: ~7.8.2
         version: 7.8.2
       tslib:
-        specifier: ^2.3.0
+        specifier: ^2.8.1
         version: 2.8.1
       zone.js:
-        specifier: ~0.15.0
+        specifier: ~0.15.1
         version: 0.15.1
     devDependencies:
       '@angular-devkit/build-angular':
-        specifier: ^20.0.0
+        specifier: ^20.3.28
         version: 20.3.28(@angular/compiler-cli@20.3.25(@angular/compiler@20.3.25)(typescript@5.9.3))(@angular/compiler@20.3.25)(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.25(@angular/animations@20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.25(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.25)(rxjs@7.8.2)(zone.js@0.15.1)))(@types/node@25.9.3)(chokidar@4.0.3)(jiti@1.21.7)(karma@6.4.4)(typescript@5.9.3)
       '@angular-eslint/builder':
-        specifier: ^20.0.0
+        specifier: ^20.7.0
         version: 20.7.0(chokidar@4.0.3)(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3)
       '@angular-eslint/eslint-plugin':
-        specifier: ^20.0.0
+        specifier: ^20.7.0
         version: 20.7.0(@typescript-eslint/utils@8.61.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3)
       '@angular-eslint/eslint-plugin-template':
-        specifier: ^20.0.0
+        specifier: ^20.7.0
         version: 20.7.0(@angular-eslint/template-parser@20.7.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(@typescript-eslint/types@8.61.0)(@typescript-eslint/utils@8.61.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3)
       '@angular-eslint/schematics':
-        specifier: ^20.0.0
+        specifier: ^20.7.0
         version: 20.7.0(@angular-eslint/template-parser@20.7.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(@typescript-eslint/types@8.61.0)(@typescript-eslint/utils@8.61.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(chokidar@4.0.3)(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3)
       '@angular-eslint/template-parser':
-        specifier: ^20.0.0
+        specifier: ^20.7.0
         version: 20.7.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3)
       '@angular/cli':
-        specifier: ^20.0.0
+        specifier: ^20.3.28
         version: 20.3.28(@types/node@25.9.3)(chokidar@4.0.3)
       '@angular/compiler-cli':
-        specifier: ^20.0.0
+        specifier: ^20.3.25
         version: 20.3.25(@angular/compiler@20.3.25)(typescript@5.9.3)
       '@angular/language-service':
-        specifier: ^20.0.0
+        specifier: ^20.3.25
         version: 20.3.25
       '@ionic/angular-toolkit':
-        specifier: ^12.0.0
+        specifier: ^12.3.0
         version: 12.3.0(chokidar@4.0.3)
       '@types/jasmine':
-        specifier: ~5.1.0
+        specifier: ~5.1.15
         version: 5.1.15
       '@typescript-eslint/eslint-plugin':
-        specifier: ^8.18.0
+        specifier: ^8.61.0
         version: 8.61.0(@typescript-eslint/parser@8.61.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3)
       '@typescript-eslint/parser':
-        specifier: ^8.18.0
+        specifier: ^8.61.0
         version: 8.61.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3)
       eslint:
-        specifier: ^9.16.0
+        specifier: ^9.39.4
         version: 9.39.4(jiti@1.21.7)
       eslint-plugin-import:
-        specifier: ^2.29.1
+        specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@8.61.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.4(jiti@1.21.7))
       eslint-plugin-jsdoc:
-        specifier: ^48.2.1
+        specifier: ^48.11.0
         version: 48.11.0(eslint@9.39.4(jiti@1.21.7))
       eslint-plugin-prefer-arrow:
         specifier: 1.2.2
         version: 1.2.2(eslint@9.39.4(jiti@1.21.7))
       jasmine-core:
-        specifier: ~5.1.0
+        specifier: ~5.1.2
         version: 5.1.2
       jasmine-spec-reporter:
-        specifier: ~5.0.0
+        specifier: ~5.0.2
         version: 5.0.2
       karma:
-        specifier: ~6.4.0
+        specifier: ~6.4.4
         version: 6.4.4
       karma-chrome-launcher:
         specifier: ~3.2.0
         version: 3.2.0
       karma-coverage:
-        specifier: ~2.2.0
+        specifier: ~2.2.1
         version: 2.2.1
       karma-jasmine:
         specifier: ~5.1.0
@@ -121,7 +121,7 @@ importers:
         specifier: ~2.1.0
         version: 2.1.0(jasmine-core@5.1.2)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4)
       typescript:
-        specifier: ~5.9.0
+        specifier: ~5.9.3
         version: 5.9.3
 
 packages:
@@ -5965,7 +5965,7 @@ snapshots:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@babel/code-frame': 7.29.7
-      '@babel/generator': 7.28.3
+      '@babel/generator': 7.29.7
       '@babel/helper-compilation-targets': 7.29.7
       '@babel/helper-module-transforms': 7.29.7(@babel/core@7.28.3)
       '@babel/helpers': 7.29.7
@@ -7386,7 +7386,7 @@ snapshots:
 
   '@npmcli/fs@5.0.0':
     dependencies:
-      semver: 7.7.2
+      semver: 7.8.4
 
   '@npmcli/git@7.0.2':
     dependencies:
@@ -7396,7 +7396,7 @@ snapshots:
       lru-cache: 11.5.1
       npm-pick-manifest: 11.0.3
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.8.4
       which: 6.0.1
 
   '@npmcli/installed-package-contents@4.0.0':
@@ -7413,7 +7413,7 @@ snapshots:
       hosted-git-info: 9.0.3
       json-parse-even-better-errors: 5.0.0
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.8.4
       spdx-expression-parse: 4.0.0
 
   '@npmcli/promise-spawn@9.0.1':
@@ -8448,7 +8448,7 @@ snapshots:
       postcss-modules-scope: 3.2.1(postcss@8.5.12)
       postcss-modules-values: 4.0.0(postcss@8.5.12)
       postcss-value-parser: 4.2.0
-      semver: 7.7.2
+      semver: 7.8.4
     optionalDependencies:
       webpack: 5.105.0(esbuild@0.28.0)(postcss@8.5.12)
 
@@ -9605,11 +9605,11 @@ snapshots:
 
   istanbul-lib-instrument@6.0.3:
     dependencies:
-      '@babel/core': 7.28.3
+      '@babel/core': 7.29.7
       '@babel/parser': 7.29.7
       '@istanbuljs/schema': 0.1.6
       istanbul-lib-coverage: 3.2.2
-      semver: 7.7.2
+      semver: 7.8.4
     transitivePeerDependencies:
       - supports-color
 
@@ -10087,7 +10087,7 @@ snapshots:
       graceful-fs: 4.2.11
       nopt: 9.0.0
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.8.4
       tar: 7.5.16
       tinyglobby: 0.2.17
       undici: 6.26.0
@@ -10109,7 +10109,7 @@ snapshots:
 
   npm-install-checks@8.0.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.8.4
 
   npm-normalize-package-bin@5.0.0: {}
 
@@ -10117,7 +10117,7 @@ snapshots:
     dependencies:
       hosted-git-info: 9.0.3
       proc-log: 5.0.0
-      semver: 7.7.2
+      semver: 7.8.4
       validate-npm-package-name: 6.0.2
 
   npm-packlist@10.0.4:
@@ -10130,7 +10130,7 @@ snapshots:
       npm-install-checks: 8.0.0
       npm-normalize-package-bin: 5.0.0
       npm-package-arg: 13.0.0
-      semver: 7.7.2
+      semver: 7.8.4
 
   npm-registry-fetch@19.1.1:
     dependencies:
@@ -10359,7 +10359,7 @@ snapshots:
       cosmiconfig: 9.0.2(typescript@5.9.3)
       jiti: 1.21.7
       postcss: 8.5.12
-      semver: 7.7.2
+      semver: 7.8.4
     optionalDependencies:
       webpack: 5.105.0(esbuild@0.28.0)(postcss@8.5.12)
     transitivePeerDependencies:

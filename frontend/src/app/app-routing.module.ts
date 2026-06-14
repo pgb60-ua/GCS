@@ -32,6 +32,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'checkout/:cocheId',
+    loadChildren: () => import('./pages/checkout/checkout.module').then(m => m.CheckoutPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'compras',
+    loadChildren: () => import('./pages/purchases/purchases.module').then(m => m.PurchasesPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'perfil',
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule),
     canActivate: [AuthGuard]
