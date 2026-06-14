@@ -21,6 +21,7 @@ public class SolicitudPiezaController {
     private SolicitudPiezaService service;
 
     // GET /api/solicitudes-pieza
+    @GetMapping
     public List<SolicitudPiezaResponse> getAll() {
         return service.findAll();
     }

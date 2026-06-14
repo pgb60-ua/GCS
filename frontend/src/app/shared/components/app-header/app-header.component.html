@@ -1,14 +1,28 @@
 <ion-header>
   <ion-toolbar class="gcs-toolbar">
-    <ion-title>{{ title }}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button fill="clear" (click)="goToProfile()">Perfil</ion-button>
-      <ion-button fill="clear" routerLink="/garaje">Mi garaje</ion-button>
-      <ion-button fill="clear" routerLink="/solicitudes" *ngIf="!isAdmin">Mis solicitudes</ion-button>
-      <ion-button fill="clear" routerLink="/admin" color="danger" *ngIf="isAdmin">Panel Admin</ion-button>
-      <ion-button fill="clear" routerLink="/compras">Compras</ion-button>
+    <!-- Botón hamburguesa visible solo en móvil (pantallas pequeñas) -->
+    <ion-buttons slot="start" class="ion-hide-md-up">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title slot="start" style="cursor: pointer;" routerLink="/catalogo">
+      {{ title }}
+      <span *ngIf="subtitle" class="header-subtitle">| {{ subtitle }}</span>
+    </ion-title>
+
+    <!-- Botones de navegación visibles solo en escritorio (pantallas medianas y grandes) -->
+    <ion-buttons slot="end" class="ion-hide-md-down">
+      <ion-button fill="clear" routerLink="/perfil"
+        [color]="router.url.startsWith('/perfil') ? 'danger' : null">Perfil</ion-button>
+      <ion-button fill="clear" routerLink="/garaje" [color]="router.url.startsWith('/garaje') ? 'danger' : null">Mi
+        garaje</ion-button>
+      <ion-button fill="clear" routerLink="/solicitudes" *ngIf="!isAdmin"
+        [color]="router.url.startsWith('/solicitudes') ? 'danger' : null">Mis solicitudes</ion-button>
+      <ion-button fill="clear" routerLink="/admin" *ngIf="isAdmin"
+        [color]="router.url.startsWith('/admin') ? 'danger' : null">Panel Admin</ion-button>
+      <ion-button fill="clear" routerLink="/compras"
+        [color]="router.url.startsWith('/compras') ? 'danger' : null">Compras</ion-button>
       <ion-button fill="clear" (click)="logout()">Cerrar sesion</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-

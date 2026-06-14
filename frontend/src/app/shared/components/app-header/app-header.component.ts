@@ -10,8 +10,9 @@ import { AuthService } from '../../../core/services/auth.service';
 })
 export class AppHeaderComponent {
   @Input() title = 'Kinetic Lab';
+  @Input() subtitle?: string;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, public router: Router) {}
 
   get isAdmin(): boolean {
     return this.authService.isAdmin();

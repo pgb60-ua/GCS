@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { CarSummary } from '../../core/models/car.model';
-import { CarService } from '../../core/services/car.service';
 import { CustomRequestService } from '../../core/services/custom-request.service';
 import { AuthService } from '../../core/services/auth.service';
 import { CarService } from '../../core/services/car.service';
@@ -49,11 +47,10 @@ export class CustomizePage {
     private carService: CarService,
     private customRequestService: CustomRequestService,
     private authService: AuthService,
-    private toastController: ToastController
-  ) { }
+    private toastController: ToastController,
     private partService: PartService,
-    private toastCtrl: ToastController
-  ) {}
+
+  ) { }
 
   ionViewWillEnter(): void {
     this.errorMessage = '';
@@ -252,7 +249,7 @@ export class CustomizePage {
     this.router.navigateByUrl(`/checkout/${this.summary.id}`);
   }
   async showToast(message: string, color: string): Promise<void> {
-    const toast = await this.toastCtrl.create({
+    const toast = await this.toastController.create({
       message,
       color,
       duration: 2500,
