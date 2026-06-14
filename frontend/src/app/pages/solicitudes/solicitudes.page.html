@@ -1,0 +1,51 @@
+<app-header title="Mis Solicitudes"></app-header>
+
+<ion-content [fullscreen]="true" class="solicitudes-shell">
+
+  <div class="solicitudes-layout" *ngIf="!loading && solicitudes.length > 0">
+    <section class="section-heading">
+      <h1>HISTORIAL DE SOLICITUDES</h1>
+      <p class="section-sub">{{ solicitudes.length }} solicitud{{ solicitudes.length !== 1 ? 'es' : '' }} encontrada{{ solicitudes.length !== 1 ? 's' : '' }}</p>
+    </section>
+
+    <div class="request-list">
+      <div class="request-card" *ngFor="let s of solicitudes">
+
+        <div class="card-top">
+          <div class="card-meta">
+            <span class="car-name">{{ s.cocheNombre }}</span>
+            <span class="req-date">{{ s.createdAt | date:'dd MMM yyyy · HH:mm' }}</span>
+          </div>
+          <ion-badge [color]="getEstadoColor(s.estado)" class="estado-badge">
+            {{ getEstadoLabel(s.estado) }}
+          </ion-badge>
+        </div>
+
+        <p class="descripcion">{{ s.descripcion }}</p>
+
+        <div class="admin-response" *ngIf="s.respuestaAdmin">
+          <span class="response-label">RESPUESTA DEL EQUIPO</span>
+          <p class="response-text">{{ s.respuestaAdmin }}</p>
+          <span class="revisado-date" *ngIf="s.revisadoAt">
+            Revisado el {{ s.revisadoAt | date:'dd MMM yyyy' }}
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <app-loading-spinner *ngIf="loading" label="Cargando solicitudes..."></app-loading-spinner>
+
+  <app-empty-state
+    *ngIf="!loading && solicitudes.length === 0 && !errorMessage"
+    icon="construct"
+    title="Sin solicitudes"
+    message="Todavia no has solicitado ninguna pieza personalizada. Ve a personalizar tu coche para enviar una."
+  ></app-empty-state>
+
+  <div class="error-state" *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+</ion-content>

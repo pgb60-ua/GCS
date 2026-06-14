@@ -4,7 +4,10 @@
     <ion-buttons slot="end">
       <ion-button fill="clear" (click)="goToProfile()">Perfil</ion-button>
       <ion-button fill="clear" routerLink="/garaje">Mi garaje</ion-button>
+      <ion-button fill="clear" routerLink="/solicitudes" *ngIf="!isAdmin">Mis solicitudes</ion-button>
+      <ion-button fill="clear" routerLink="/admin" color="danger" *ngIf="isAdmin">Panel Admin</ion-button>
       <ion-button fill="clear" (click)="logout()">Cerrar sesion</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+

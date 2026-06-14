@@ -13,6 +13,10 @@ export class AppHeaderComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  get isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
   logout(): void {
     this.authService.logout();
     this.router.navigateByUrl('/login', { replaceUrl: true });

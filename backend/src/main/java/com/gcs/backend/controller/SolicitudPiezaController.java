@@ -1,13 +1,16 @@
 package com.gcs.backend.controller;
 
-import com.gcs.backend.model.SolicitudPieza;
+import com.gcs.backend.dto.RevisarSolicitudRequest;
+import com.gcs.backend.dto.SolicitudPiezaRequest;
+import com.gcs.backend.dto.SolicitudPiezaResponse;
 import com.gcs.backend.service.SolicitudPiezaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -17,36 +20,47 @@ public class SolicitudPiezaController {
     @Autowired
     private SolicitudPiezaService service;
 
-    @GetMapping
-    public List<SolicitudPieza> getAll() {
+    // GET /api/solicitudes-pieza
+    public List<SolicitudPiezaResponse> getAll() {
         return service.findAll();
     }
-
+    // GET /api/solicitudes-pieza/{id}
     @GetMapping("/{id}")
-    public ResponseEntity<SolicitudPieza> getById(@PathVariable UUID id) {
-        Optional<SolicitudPieza> entity = service.findById(id);
-        return entity.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<SolicitudPiezaResponse> getById(@PathVariable UUID id) {
+        return service.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/usuario/{usuarioId}")
+    public List<SolicitudPiezaResponse> getByUsuario(@PathVariable UUID usuarioId) {
+        return service.findByUsuarioId(usuarioId);
+    }
+
+    @GetMapping("/coche/{cocheId}")
+    public List<SolicitudPiezaResponse> getByCoche(@PathVariable UUID cocheId) {
+        return service.findByCocheId(cocheId);
+    }
+
+    @GetMapping("/estado/{estado}")
+    public List<SolicitudPiezaResponse> getByEstado(@PathVariable String estado) {
+        return service.findByEstado(estado);
     }
 
     @PostMapping
-    public SolicitudPieza create(@RequestBody SolicitudPieza entity) {
-        return service.save(entity);
+    public ResponseEntity<SolicitudPiezaResponse> create(@Valid @RequestBody SolicitudPiezaRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.createSolicitud(request));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<SolicitudPieza> update(@PathVariable UUID id, @RequestBody SolicitudPieza entity) {
-        if (!service.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        entity.setId(id);
-        return ResponseEntity.ok(service.save(entity));
+    @PatchMapping("/{id}/revisar")
+    public ResponseEntity<SolicitudPiezaResponse> revisar(
+            @PathVariable UUID id,
+            @Valid @RequestBody RevisarSolicitudRequest request) {
+        return ResponseEntity.ok(service.revisarSolicitud(id, request));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
-        if (!service.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }

@@ -7,7 +7,8 @@
       <h1>{{ summary.nomenclatura }}</h1>
     </section>
 
-    <img *ngIf="summary.imagenUrl" [src]="summary.imagenUrl" [alt]="summary.nomenclatura" class="car-image" (error)="$event.target.src='https://placehold.co/640x360/333/FFF?text=Imagen+no+disponible'" />
+    <img *ngIf="summary.imagenUrl" [src]="summary.imagenUrl" [alt]="summary.nomenclatura" class="car-image"
+      (error)="$event.target.src='https://placehold.co/640x360/333/FFF?text=Imagen+no+disponible'" />
 
     <section class="info-card">
       <div class="price-strip">
@@ -34,11 +35,33 @@
 
     <section class="parts-section">
       <h2>Piezas instaladas</h2>
-      <p *ngIf="summary.piezas.length === 0">No hay piezas instaladas. Las secciones de motor, pintura, suspension y aerodinamica se activaran con el trabajo de P4.</p>
+      <p *ngIf="summary.piezas.length === 0">No hay piezas instaladas. Las secciones de motor, pintura, suspension y
+        aerodinamica se activaran con el trabajo de P4.</p>
       <div class="part-item" *ngFor="let p of summary.piezas">
         <span>{{ p.nombre }}</span>
         <span>{{ p.cantidad }} x {{ p.precio | currency:'EUR' }} = {{ p.subtotal | currency:'EUR' }}</span>
       </div>
+    </section>
+
+    <section class="request-card">
+      <div class="request-header">
+        <span class="request-tag">SOLICITUD_PIEZA</span>
+        <span class="request-subtitle">TERMINAL DE INGENIERÍA PERSONALIZADA</span>
+      </div>
+
+      <ion-item lines="none" class="request-item">
+        <ion-label position="stacked">DESCRIPCIÓN TÉCNICA</ion-label>
+        <ion-textarea id="request-descripcion" [(ngModel)]="requestDescripcion" name="requestDescripcion" rows="4"
+          placeholder="Especificar dimensiones y características esperadas..."></ion-textarea>
+      </ion-item>
+
+      <p class="request-error" *ngIf="requestError">{{ requestError }}</p>
+
+      <ion-button id="btn-enviar-solicitud" expand="block" class="request-btn" (click)="sendCustomRequest()"
+        [disabled]="sendingRequest">
+        <app-loading-spinner *ngIf="sendingRequest"></app-loading-spinner>
+        <span *ngIf="!sendingRequest">ENVIAR A PROTOCOLO DE CONSTRUCCIÓN</span>
+      </ion-button>
     </section>
 
     <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
@@ -49,10 +72,6 @@
   </main>
 
   <app-loading-spinner *ngIf="loading" label="Cargando personalizacion..."></app-loading-spinner>
-  <app-empty-state
-    *ngIf="!loading && !summary && !errorMessage"
-    icon="F1"
-    title="Coche no encontrado"
-    message="El coche no existe o no esta disponible."
-  ></app-empty-state>
+  <app-empty-state *ngIf="!loading && !summary && !errorMessage" icon="F1" title="Coche no encontrado"
+    message="El coche no existe o no esta disponible."></app-empty-state>
 </ion-content>
