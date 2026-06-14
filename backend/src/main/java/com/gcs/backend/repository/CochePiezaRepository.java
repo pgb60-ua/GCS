@@ -9,5 +9,6 @@ import java.util.UUID;
 
 @Repository
 public interface CochePiezaRepository extends JpaRepository<CochePieza, UUID> {
-    List<CochePieza> findByCocheId(UUID cocheId);
+    @org.springframework.data.jpa.repository.Query("SELECT cp FROM CochePieza cp JOIN FETCH cp.pieza WHERE cp.coche.id = :cocheId")
+    List<CochePieza> findByCocheId(@org.springframework.data.repository.query.Param("cocheId") UUID cocheId);
 }

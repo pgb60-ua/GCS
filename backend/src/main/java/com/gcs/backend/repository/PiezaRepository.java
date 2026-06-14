@@ -4,8 +4,12 @@ import com.gcs.backend.model.Pieza;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
 public interface PiezaRepository extends JpaRepository<Pieza, UUID> {
+    List<Pieza> findByDisponibleTrue();
+    List<Pieza> findByTipoPiezaIgnoreCase(String tipoPieza);
+    List<Pieza> findByEsCatalogoTrue();
 }
