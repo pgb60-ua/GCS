@@ -145,6 +145,37 @@
       </ion-button>
     </section>
 
+    <section class="parts-section">
+      <h2>Piezas instaladas</h2>
+      <p *ngIf="summary.piezas.length === 0">No hay piezas instaladas. Las secciones de motor, pintura, suspension y
+        aerodinamica se activaran con el trabajo de P4.</p>
+      <div class="part-item" *ngFor="let p of summary.piezas">
+        <span>{{ p.nombre }}</span>
+        <span>{{ p.cantidad }} x {{ p.precio | currency:'EUR' }} = {{ p.subtotal | currency:'EUR' }}</span>
+      </div>
+    </section>
+
+    <section class="request-card">
+      <div class="request-header">
+        <span class="request-tag">SOLICITUD_PIEZA</span>
+        <span class="request-subtitle">TERMINAL DE INGENIERÍA PERSONALIZADA</span>
+      </div>
+
+      <ion-item lines="none" class="request-item">
+        <ion-label position="stacked">DESCRIPCIÓN TÉCNICA</ion-label>
+        <ion-textarea id="request-descripcion" [(ngModel)]="requestDescripcion" name="requestDescripcion" rows="4"
+          placeholder="Especificar dimensiones y características esperadas..."></ion-textarea>
+      </ion-item>
+
+      <p class="request-error" *ngIf="requestError">{{ requestError }}</p>
+
+      <ion-button id="btn-enviar-solicitud" expand="block" class="request-btn" (click)="sendCustomRequest()"
+        [disabled]="sendingRequest">
+        <app-loading-spinner *ngIf="sendingRequest"></app-loading-spinner>
+        <span *ngIf="!sendingRequest">ENVIAR A PROTOCOLO DE CONSTRUCCIÓN</span>
+      </ion-button>
+    </section>
+
     <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
     <ion-button expand="block" class="buy-button" (click)="goToCheckout()" [disabled]="summary.esBase">

@@ -1,7 +1,11 @@
 <section class="empty-state">
-  <div class="empty-icon">{{ icon }}</div>
+  <div class="empty-icon">
+    <ion-icon *ngIf="icon && icon.length > 2" [name]="icon"></ion-icon>
+    <span *ngIf="icon && icon.length <= 2">{{ icon }}</span>
+  </div>
   <div>
     <h2>{{ title }}</h2>
     <p>{{ message }}</p>
   </div>
 </section>
+

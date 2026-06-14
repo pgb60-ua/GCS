@@ -1,0 +1,122 @@
+<app-header title="Panel de Administrador"></app-header>
+
+<ion-content [fullscreen]="true" class="admin-shell">
+  <div class="admin-layout">
+
+    <section class="panel-header">
+      <div class="panel-title-row">
+        <div>
+          <h1 class="panel-title">PANEL DE ADMINISTRADOR</h1>
+        </div>
+      </div>
+
+      <div class="panel-tabs">
+        <button id="tab-solicitudes" class="panel-tab" [class.active]="activeSection === 'solicitudes'"
+          (click)="activeSection = 'solicitudes'">
+          Solicitudes de Piezas
+        </button>
+      </div>
+    </section>
+
+    <section class="panel-section" *ngIf="activeSection === 'solicitudes'">
+      <div class="section-head">
+        <h2>SOLICITUD DE PIEZAS</h2>
+      </div>
+
+      <div class="filter-bar">
+        <button id="filter-pendiente" class="filter-chip" [class.active]="filtroEstado === 'PENDIENTE'"
+          (click)="loadSolicitudes('PENDIENTE')">⏳ Pendientes</button>
+        <button id="filter-aprobada" class="filter-chip" [class.active]="filtroEstado === 'APROBADA'"
+          (click)="loadSolicitudes('APROBADA')">✅ Aprobadas</button>
+        <button id="filter-rechazada" class="filter-chip" [class.active]="filtroEstado === 'RECHAZADA'"
+          (click)="loadSolicitudes('RECHAZADA')">❌ Rechazadas</button>
+        <button id="filter-todas" class="filter-chip" [class.active]="filtroEstado === 'TODAS'"
+          (click)="loadSolicitudes('TODAS')">📋 Todas</button>
+      </div>
+
+      <app-loading-spinner *ngIf="loadingSolicitudes"></app-loading-spinner>
+
+      <div class="solicitudes-grid" *ngIf="!loadingSolicitudes">
+
+        <div class="solicitudes-list">
+          <p class="list-count">{{ todasSolicitudes.length }} solicitud{{ todasSolicitudes.length !== 1 ? 'es' : '' }}
+          </p>
+
+          <div *ngFor="let s of todasSolicitudes" class="solicitud-item"
+            [class.selected]="selectedSolicitud?.id === s.id" (click)="selectSolicitud(s)">
+            <div class="item-top">
+              <span class="item-car">{{ s.cocheNombre }}</span>
+              <ion-badge [color]="getEstadoColor(s.estado)" class="item-badge">
+                {{ getEstadoLabel(s.estado) }}
+              </ion-badge>
+            </div>
+            <span class="item-user">Solicitado por {{ s.usuarioNombre }}</span>
+            <span class="item-date">{{ s.createdAt | date:'dd MMM yyyy' }}</span>
+          </div>
+
+          <app-empty-state *ngIf="todasSolicitudes.length === 0" icon="checkmark-circle" title="Sin solicitudes"
+            message="No hay solicitudes con este filtro."></app-empty-state>
+        </div>
+
+        <div class="solicitud-detail" *ngIf="selectedSolicitud">
+          <div class="detail-header">
+            <h3>{{ selectedSolicitud.cocheNombre }}</h3>
+            <button class="detail-close" (click)="clearSelected()">✕</button>
+          </div>
+
+          <p class="detail-meta">
+            Solicitado por <strong>{{ selectedSolicitud.usuarioNombre }}</strong>
+            el {{ selectedSolicitud.createdAt | date:'dd MMM yyyy · HH:mm' }}
+          </p>
+
+          <div class="detail-description">
+            <span class="detail-label">DESCRIPCIÓN TÉCNICA</span>
+            <p>{{ selectedSolicitud.descripcion }}</p>
+          </div>
+
+          <div class="detail-previous" *ngIf="selectedSolicitud.respuestaAdmin">
+            <span class="detail-label">RESPUESTA ANTERIOR</span>
+            <p>{{ selectedSolicitud.respuestaAdmin }}</p>
+          </div>
+
+          <div class="review-form" *ngIf="selectedSolicitud.estado === 'PENDIENTE'">
+            <ion-item lines="none" class="review-item">
+              <ion-label position="stacked">RESPUESTA DEL EQUIPO</ion-label>
+              <ion-textarea id="admin-respuesta" [(ngModel)]="respuestaAdmin" name="respuestaAdmin" rows="3"
+                placeholder="Escribe la respuesta para el cliente..."></ion-textarea>
+            </ion-item>
+
+            <p class="review-error" *ngIf="reviewError">{{ reviewError }}</p>
+
+            <div class="review-actions">
+              <ion-button id="btn-aprobar" color="success" [disabled]="reviewing" (click)="aprobar()">
+                <app-loading-spinner *ngIf="reviewing"></app-loading-spinner>
+                <span *ngIf="!reviewing">✅ Aprobar</span>
+              </ion-button>
+              <ion-button id="btn-rechazar" color="danger" [disabled]="reviewing" (click)="rechazar()">
+                <span *ngIf="!reviewing">❌ Rechazar</span>
+              </ion-button>
+            </div>
+          </div>
+
+          <div class="already-reviewed" *ngIf="selectedSolicitud.estado !== 'PENDIENTE'">
+            <ion-badge [color]="getEstadoColor(selectedSolicitud.estado)">
+              {{ getEstadoLabel(selectedSolicitud.estado) }}
+            </ion-badge>
+            <p *ngIf="selectedSolicitud.revisadoAt">
+              Revisado el {{ selectedSolicitud.revisadoAt | date:'dd MMM yyyy · HH:mm' }}
+            </p>
+          </div>
+        </div>
+
+        <div class="solicitud-detail detail-placeholder" *ngIf="!selectedSolicitud && todasSolicitudes.length > 0">
+          <p>← Selecciona una solicitud para revisarla</p>
+        </div>
+
+      </div>
+
+      <p class="section-error" *ngIf="solicitudesError">{{ solicitudesError }}</p>
+    </section>
+
+  </div>
+</ion-content>

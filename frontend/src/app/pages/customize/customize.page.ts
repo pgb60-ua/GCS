@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { CarSummary } from '../../core/models/car.model';
+import { CarService } from '../../core/services/car.service';
+import { CustomRequestService } from '../../core/services/custom-request.service';
+import { AuthService } from '../../core/services/auth.service';
 import { CarService } from '../../core/services/car.service';
 import { PartService } from '../../core/services/part.service';
 import { CarSummary } from '../../core/models/car.model';
@@ -23,6 +27,9 @@ export class CustomizePage {
   newNomenclatura = '';
   newDescripcion = '';
 
+  requestDescripcion = '';
+  sendingRequest = false;
+  requestError = '';
   selectedCategory: PartCategory = 'MOTOR';
   catalogParts: Part[] = [];
   filteredParts: Part[] = [];
@@ -40,6 +47,10 @@ export class CustomizePage {
     private route: ActivatedRoute,
     private router: Router,
     private carService: CarService,
+    private customRequestService: CustomRequestService,
+    private authService: AuthService,
+    private toastController: ToastController
+  ) { }
     private partService: PartService,
     private toastCtrl: ToastController
   ) {}
@@ -202,6 +213,36 @@ export class CustomizePage {
     });
   }
 
+  sendCustomRequest(): void {
+    this.requestError = '';
+    const desc = this.requestDescripcion.trim();
+    if (!desc) {
+      this.requestError = 'La descripcion no puede estar vacia.';
+      return;
+    }
+    const user = this.authService.getCurrentUser();
+    if (!user || !this.summary) return;
+
+    this.sendingRequest = true;
+    this.customRequestService.createRequest(user.id, this.summary.id, desc).subscribe({
+      next: async () => {
+        this.sendingRequest = false;
+        this.requestDescripcion = '';
+        const toast = await this.toastController.create({
+          message: '✅ Solicitud enviada correctamente. El equipo la revisara pronto.',
+          duration: 3000,
+          color: 'success',
+          position: 'bottom',
+        });
+        await toast.present();
+      },
+      error: (err) => {
+        this.sendingRequest = false;
+        this.requestError = err?.error?.message ?? 'No se ha podido enviar la solicitud.';
+      },
+    });
+  }
+
   goToGarage(): void {
     this.router.navigateByUrl('/garaje', { replaceUrl: true });
   }
@@ -220,3 +261,4 @@ export class CustomizePage {
     await toast.present();
   }
 }
+
