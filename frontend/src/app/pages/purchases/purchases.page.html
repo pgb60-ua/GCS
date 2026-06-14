@@ -1,0 +1,46 @@
+<app-header title="Mis compras"></app-header>
+
+<ion-content [fullscreen]="true" class="purchases-shell">
+  <main class="purchases-layout">
+    <section class="page-heading">
+      <p class="kicker">Historial</p>
+      <h1>Mis compras</h1>
+      <p class="lead">Ventas registradas para tu usuario.</p>
+    </section>
+
+    <p class="success" *ngIf="highlightedSaleId">Compra completada correctamente.</p>
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    <app-loading-spinner *ngIf="loading" label="Cargando compras..."></app-loading-spinner>
+
+    <section class="sales-list" *ngIf="!loading && sales.length > 0">
+      <article
+        class="sale-card"
+        *ngFor="let sale of sales"
+        [class.highlighted]="sale.id === highlightedSaleId"
+      >
+        <div class="sale-main">
+          <div>
+            <p class="date">{{ sale.fechaVenta | date:'medium' }}</p>
+            <h2>{{ sale.cocheNombre || 'Coche personalizado' }}</h2>
+            <p class="payment">{{ sale.metodoPago }}</p>
+          </div>
+          <div class="amount">
+            <strong>{{ sale.montoTotal | currency:'EUR' }}</strong>
+            <span [class]="sale.estadoPago.toLowerCase()">{{ sale.estadoPago }}</span>
+          </div>
+        </div>
+
+        <ion-button fill="clear" size="small" (click)="openCar(sale)">
+          Ver coche
+        </ion-button>
+      </article>
+    </section>
+
+    <app-empty-state
+      *ngIf="!loading && sales.length === 0 && !errorMessage"
+      icon="0"
+      title="Sin compras"
+      message="Todavia no has confirmado ninguna compra."
+    ></app-empty-state>
+  </main>
+</ion-content>

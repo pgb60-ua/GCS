@@ -147,6 +147,10 @@
 
     <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
+    <ion-button expand="block" class="buy-button" (click)="goToCheckout()" [disabled]="summary.esBase">
+      Comprar
+    </ion-button>
+
     <ion-button expand="block" fill="outline" (click)="goToGarage()">
       Ir a Mi garaje
     </ion-button>

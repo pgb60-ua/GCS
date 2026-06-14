@@ -206,6 +206,10 @@ export class CustomizePage {
     this.router.navigateByUrl('/garaje', { replaceUrl: true });
   }
 
+  goToCheckout(): void {
+    if (!this.summary) return;
+    this.router.navigateByUrl(`/checkout/${this.summary.id}`);
+  }
   async showToast(message: string, color: string): Promise<void> {
     const toast = await this.toastCtrl.create({
       message,
