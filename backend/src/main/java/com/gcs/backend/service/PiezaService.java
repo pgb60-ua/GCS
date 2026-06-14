@@ -30,4 +30,12 @@ public class PiezaService {
     public void deleteById(UUID id) {
         repository.deleteById(id);
     }
+
+    public List<Pieza> findCatalogo() {
+        return repository.findByEsCatalogoTrue();
+    }
+
+    public List<Pieza> findByTipo(String tipo) {
+        return repository.findByTipoPiezaIgnoreCase(tipo);
+    }
 }

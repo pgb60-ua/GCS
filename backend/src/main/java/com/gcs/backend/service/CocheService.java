@@ -126,6 +126,7 @@ public class CocheService {
         return toResponse(cocheRepository.save(nuevo));
     }
 
+    @org.springframework.transaction.annotation.Transactional(readOnly = true)
     public CocheResumenResponse getResumen(UUID id) {
         Coche coche = findEntityById(id);
         List<CochePieza> cochePiezas = cochePiezaRepository.findByCocheId(id);
