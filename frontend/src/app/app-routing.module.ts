@@ -42,6 +42,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'coche-comprado/:id',
+    loadChildren: () => import('./pages/purchased-car/purchased-car.module').then(m => m.PurchasedCarPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'perfil',
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule),
     canActivate: [AuthGuard]

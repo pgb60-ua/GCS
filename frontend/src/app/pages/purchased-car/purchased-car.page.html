@@ -1,0 +1,89 @@
+<app-header title="Vehículo adquirido"></app-header>
+
+<ion-content [fullscreen]="true" class="purchased-shell">
+  <main class="purchased-layout">
+
+    <app-loading-spinner *ngIf="loading" label="Cargando vehiculo..."></app-loading-spinner>
+
+    <app-empty-state
+      *ngIf="!loading && errorMessage"
+      icon="!"
+      title="No se ha podido cargar el vehiculo"
+      [message]="errorMessage"
+    ></app-empty-state>
+
+    <app-empty-state
+      *ngIf="!loading && !errorMessage && !summary"
+      icon="F1"
+      title="Vehiculo no encontrado"
+      message="El vehiculo solicitado no existe o no esta disponible."
+    ></app-empty-state>
+
+    <ng-container *ngIf="summary && !loading && !errorMessage">
+      <div class="back-nav">
+        <ion-button fill="clear" (click)="goBack()" class="back-btn">
+          <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+          Mis compras
+        </ion-button>
+      </div>
+
+      <article class="car-card">
+        <div class="car-image-wrap">
+          <img
+            [src]="summary.imagenUrl || 'assets/shapes.svg'"
+            [alt]="summary.nomenclatura"
+            class="car-image"
+            (error)="$any($event.target).src='assets/shapes.svg'"
+          />
+        </div>
+
+        <div class="car-info">
+          <p class="kicker">{{ summary.equipoF1 }} &middot; {{ summary.temporada }}</p>
+          <h1>{{ summary.nomenclatura }}</h1>
+          <p class="description" *ngIf="summary.descripcion">{{ summary.descripcion }}</p>
+
+          <div class="badge-readonly">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <span>Vista de solo lectura</span>
+          </div>
+        </div>
+      </article>
+
+      <section class="parts-section">
+        <header class="section-header">
+          <p class="kicker">Configuracion</p>
+          <h2>Piezas instaladas</h2>
+        </header>
+
+        <p class="empty-parts" *ngIf="summary.piezas.length === 0">
+          Este vehiculo se vendio sin piezas adicionales.
+        </p>
+
+        <ul class="parts-list" *ngIf="summary.piezas.length > 0">
+          <li class="part-item" *ngFor="let p of summary.piezas">
+            <div class="part-main">
+              <p class="part-name">{{ p.nombre }}</p>
+              <p class="part-type">{{ p.tipoPieza }}</p>
+            </div>
+            <div class="part-price">
+              <span class="qty">{{ p.cantidad }} x {{ p.precio | currency:'EUR' }}</span>
+              <strong>{{ p.subtotal | currency:'EUR' }}</strong>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="total-section">
+        <div class="total-row">
+          <span>Precio total pagado</span>
+          <strong>{{ summary.precioTotal | currency:'EUR' }}</strong>
+        </div>
+      </section>
+
+      <ion-button expand="block" fill="outline" (click)="goBack()">
+        Volver a Mis compras
+      </ion-button>
+    </ng-container>
+
+  </main>
+</ion-content>

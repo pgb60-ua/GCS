@@ -46,7 +46,7 @@ export class PurchasesPage {
   }
 
   openCar(sale: Sale): void {
-    this.router.navigateByUrl(`/personalizar/${sale.cocheId}`, { replaceUrl: true });
+    this.router.navigateByUrl(`/coche-comprado/${sale.cocheId}`, { replaceUrl: true });
   }
 
   private consumeHighlightedSaleId(): string | null {
