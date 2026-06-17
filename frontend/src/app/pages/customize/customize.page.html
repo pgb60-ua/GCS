@@ -2,21 +2,14 @@
 
 <ion-content [fullscreen]="true" class="customize-shell">
   <main class="customize-layout" *ngIf="!loading && summary">
-    <!-- Car header -->
     <section class="page-heading">
       <p class="kicker">{{ summary.equipoF1 }} &middot; {{ summary.temporada }}</p>
       <h1>{{ summary.nomenclatura }}</h1>
     </section>
 
-    <img
-      *ngIf="summary.imagenUrl"
-      [src]="summary.imagenUrl"
-      [alt]="summary.nomenclatura"
-      class="car-image"
-      (error)="$event.target.src='https://placehold.co/640x360/333/FFF?text=Imagen+no+disponible'"
-    />
+    <img *ngIf="summary.imagenUrl" [src]="summary.imagenUrl" [alt]="summary.nomenclatura" class="car-image"
+      (error)="$event.target.src='https://placehold.co/640x360/333/FFF?text=Imagen+no+disponible'" />
 
-    <!-- Category tabs -->
     <ion-segment [(ngModel)]="selectedCategory" (ionChange)="onCategoryChange($event)" mode="md">
       <ion-segment-button value="MOTOR">
         <ion-label>Motor</ion-label>
@@ -32,7 +25,6 @@
       </ion-segment-button>
     </ion-segment>
 
-    <!-- Parts catalog for selected category -->
     <section class="parts-catalog">
       <h2>Catálogo de {{ getCategoryLabel(selectedCategory) }}</h2>
       <div class="parts-grid">
@@ -48,57 +40,54 @@
           </div>
           <p class="part-desc" *ngIf="part.descripcion">{{ part.descripcion }}</p>
 
-          <!-- Technical attributes -->
           <div class="tech-specs">
-            <!-- MOTOR -->
             <ng-container *ngIf="part.motor">
-              <div class="spec"><span class="spec-label">Potencia</span><span class="spec-value">{{ part.motor.potenciaCv }} CV</span></div>
-              <div class="spec"><span class="spec-label">Cilindrada</span><span class="spec-value">{{ part.motor.cilindrada }} cc</span></div>
-              <div class="spec"><span class="spec-label">Combustible</span><span class="spec-value">{{ part.motor.combustible }}</span></div>
-              <div class="spec"><span class="spec-label">Fabricante</span><span class="spec-value">{{ part.motor.fabricante }}</span></div>
+              <div class="spec"><span class="spec-label">Potencia</span><span class="spec-value">{{
+                  part.motor.potenciaCv }} CV</span></div>
+              <div class="spec"><span class="spec-label">Cilindrada</span><span class="spec-value">{{
+                  part.motor.cilindrada }} cc</span></div>
+              <div class="spec"><span class="spec-label">Combustible</span><span class="spec-value">{{
+                  part.motor.combustible }}</span></div>
+              <div class="spec"><span class="spec-label">Fabricante</span><span class="spec-value">{{
+                  part.motor.fabricante }}</span></div>
             </ng-container>
-            <!-- PINTURA -->
             <ng-container *ngIf="part.pintura">
               <div class="spec">
                 <span class="spec-label">Color</span>
-                <span class="spec-value"><span class="color-swatch" [style.background]="part.pintura.colorHex"></span>{{ part.pintura.colorHex }}</span>
+                <span class="spec-value"><span class="color-swatch" [style.background]="part.pintura.colorHex"></span>{{
+                  part.pintura.colorHex }}</span>
               </div>
-              <div class="spec"><span class="spec-label">Acabado</span><span class="spec-value">{{ part.pintura.acabado }}</span></div>
-              <div class="spec"><span class="spec-label">Livery Oficial</span><span class="spec-value">{{ part.pintura.liveryOficial ? 'Sí' : 'No' }}</span></div>
+              <div class="spec"><span class="spec-label">Acabado</span><span class="spec-value">{{ part.pintura.acabado
+                  }}</span></div>
+              <div class="spec"><span class="spec-label">Livery Oficial</span><span class="spec-value">{{
+                  part.pintura.liveryOficial ? 'Sí' : 'No' }}</span></div>
             </ng-container>
-            <!-- SUSPENSION -->
             <ng-container *ngIf="part.suspension">
-              <div class="spec"><span class="spec-label">Tipo</span><span class="spec-value">{{ part.suspension.tipo }}</span></div>
-              <div class="spec"><span class="spec-label">Material</span><span class="spec-value">{{ part.suspension.material }}</span></div>
-              <div class="spec"><span class="spec-label">Dureza</span><span class="spec-value">{{ part.suspension.dureza }}</span></div>
-              <div class="spec"><span class="spec-label">Eje</span><span class="spec-value">{{ part.suspension.eje }}</span></div>
+              <div class="spec"><span class="spec-label">Tipo</span><span class="spec-value">{{ part.suspension.tipo
+                  }}</span></div>
+              <div class="spec"><span class="spec-label">Material</span><span class="spec-value">{{
+                  part.suspension.material }}</span></div>
+              <div class="spec"><span class="spec-label">Dureza</span><span class="spec-value">{{ part.suspension.dureza
+                  }}</span></div>
+              <div class="spec"><span class="spec-label">Eje</span><span class="spec-value">{{ part.suspension.eje
+                  }}</span></div>
             </ng-container>
-            <!-- AERODINAMICA -->
             <ng-container *ngIf="part.aerodinamica">
-              <div class="spec"><span class="spec-label">Cx</span><span class="spec-value">{{ part.aerodinamica.coeficienteArrastre }}</span></div>
-              <div class="spec"><span class="spec-label">Material</span><span class="spec-value">{{ part.aerodinamica.material }}</span></div>
-              <div class="spec"><span class="spec-label">Zona</span><span class="spec-value">{{ part.aerodinamica.zona }}</span></div>
+              <div class="spec"><span class="spec-label">Cx</span><span class="spec-value">{{
+                  part.aerodinamica.coeficienteArrastre }}</span></div>
+              <div class="spec"><span class="spec-label">Material</span><span class="spec-value">{{
+                  part.aerodinamica.material }}</span></div>
+              <div class="spec"><span class="spec-label">Zona</span><span class="spec-value">{{ part.aerodinamica.zona
+                  }}</span></div>
             </ng-container>
           </div>
 
-          <ion-button
-            *ngIf="!isPartInstalled(part)"
-            expand="block"
-            size="small"
-            (click)="selectPart(part)"
-            [disabled]="loadingParts"
-          >
+          <ion-button *ngIf="!isPartInstalled(part)" expand="block" size="small" (click)="selectPart(part)"
+            [disabled]="loadingParts">
             Seleccionar
           </ion-button>
-          <ion-button
-            *ngIf="isPartInstalled(part)"
-            expand="block"
-            size="small"
-            color="danger"
-            fill="outline"
-            (click)="removePart(getInstalledCarPartByPiezaId(part.id))"
-            [disabled]="loadingParts"
-          >
+          <ion-button *ngIf="isPartInstalled(part)" expand="block" size="small" color="danger" fill="outline"
+            (click)="removePart(getInstalledCarPartByPiezaId(part.id))" [disabled]="loadingParts">
             Quitar
           </ion-button>
         </div>
@@ -106,7 +95,6 @@
       <p class="empty-catalog" *ngIf="filteredParts.length === 0">No hay piezas disponibles en esta categoría.</p>
     </section>
 
-    <!-- Configuration summary -->
     <section class="config-summary">
       <h2>Resumen de Configuración</h2>
       <div class="summary-lines">
@@ -128,7 +116,6 @@
       </div>
     </section>
 
-    <!-- Car data form -->
     <section class="form-card">
       <h2>Datos del coche</h2>
       <ion-item lines="none">
@@ -188,10 +175,6 @@
   </main>
 
   <app-loading-spinner *ngIf="loading" label="Cargando configurador..."></app-loading-spinner>
-  <app-empty-state
-    *ngIf="!loading && !summary && !errorMessage"
-    icon="F1"
-    title="Coche no encontrado"
-    message="El coche no existe o no está disponible."
-  ></app-empty-state>
+  <app-empty-state *ngIf="!loading && !summary && !errorMessage" icon="F1" title="Coche no encontrado"
+    message="El coche no existe o no está disponible."></app-empty-state>
 </ion-content>

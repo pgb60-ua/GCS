@@ -8,7 +8,6 @@
   margin: 0 auto;
 }
 
-// ── Page heading ──────────────────────────────────────
 .page-heading {
   margin-bottom: 1rem;
 
@@ -40,7 +39,6 @@
   border: 1px solid #2a2a2a;
 }
 
-// ── Segment tabs ──────────────────────────────────────
 ion-segment {
   --background: #1a1a1a;
   margin-bottom: 1.5rem;
@@ -58,7 +56,6 @@ ion-segment-button {
   letter-spacing: 1px;
 }
 
-// ── Parts catalog section ─────────────────────────────
 .parts-catalog {
   margin-bottom: 1.5rem;
 
@@ -84,7 +81,6 @@ ion-segment-button {
   gap: 1rem;
 }
 
-// ── Part card ─────────────────────────────────────────
 .part-card {
   background: #1a1a1a;
   border: 1px solid #2a2a2a;
@@ -106,17 +102,19 @@ ion-segment-button {
       color: #e10600;
       font-size: 1.1rem;
     }
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
-  &:hover {
-    border-color: #e10600;
-    box-shadow: 0 0 20px rgba(225, 6, 0, 0.08);
-  }
+    transition: border-color 0.3s ease,
+    box-shadow 0.3s ease;
 
-  &.installed {
-    border-left: 3px solid #22c55e;
+    &:hover {
+      border-color: #e10600;
+      box-shadow: 0 0 20px rgba(225, 6, 0, 0.08);
+    }
+
+    &.installed {
+      border-left: 3px solid #22c55e;
+    }
   }
-}
 }
 
 .part-card-header {
@@ -148,7 +146,6 @@ ion-segment-button {
   line-height: 1.4;
 }
 
-// ── Tech specs ────────────────────────────────────────
 .tech-specs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -198,7 +195,6 @@ ion-segment-button {
   flex-shrink: 0;
 }
 
-// ── Config summary ────────────────────────────────────
 .config-summary {
   background: #1a1a1a;
   border: 1px solid #2a2a2a;
@@ -219,7 +215,7 @@ ion-segment-button {
     --color: #fff;
     --border-color: #333;
     margin-bottom: 0.5rem;
-}
+  }
 }
 
 .summary-lines {
@@ -289,7 +285,6 @@ ion-segment-button {
   }
 }
 
-// ── Form card (kept from original) ───────────────────
 .form-card {
   background: #1a1a1a;
   border: 1px solid #2a2a2a;
@@ -328,14 +323,12 @@ ion-segment-button {
   }
 }
 
-// ── Error ─────────────────────────────────────────────
 .error {
   color: #ff4d4d;
   margin-bottom: 1rem;
   font-size: 0.85rem;
 }
 
-// ── Buttons ───────────────────────────────────────────
 ion-button {
   --border-radius: 8px;
 }
