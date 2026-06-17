@@ -1,0 +1,236 @@
+.purchased-shell {
+  --background: #0d0d0d;
+}
+
+.purchased-layout {
+  padding: clamp(20px, 4vw, 48px);
+  max-width: 960px;
+  margin: 0 auto;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 85% 5%, rgba(225, 6, 0, 0.08), transparent 28%),
+    radial-gradient(circle at 8% 90%, rgba(41, 222, 201, 0.05), transparent 24%),
+    linear-gradient(180deg, #13131b 0%, #09090b 100%);
+}
+
+.back-nav {
+  margin-bottom: 16px;
+
+  .back-btn {
+    --color: #a1a1aa;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+  }
+}
+
+.car-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid rgba(228, 225, 238, 0.1);
+  border-radius: 8px;
+  background: rgba(24, 24, 27, 0.85);
+  overflow: hidden;
+  margin-bottom: 28px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.car-image-wrap {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: rgba(9, 9, 11, 0.8);
+
+  @media (max-width: 768px) {
+    aspect-ratio: 16/9;
+  }
+}
+
+.car-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.car-info {
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.kicker {
+  margin: 0;
+  color: #29dec9;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+h1 {
+  margin: 0;
+  color: #ffffff;
+  font-family: var(--gcs-display-font);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.description {
+  margin: 0;
+  color: rgba(228, 225, 238, 0.65);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.badge-readonly {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 6px 12px;
+  border: 1px solid rgba(41, 222, 201, 0.4);
+  border-radius: 4px;
+  background: rgba(41, 222, 201, 0.08);
+  color: #29dec9;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+
+  ion-icon {
+    font-size: 14px;
+  }
+}
+
+.parts-section {
+  background: rgba(24, 24, 27, 0.72);
+  border: 1px solid rgba(228, 225, 238, 0.1);
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+}
+
+.section-header {
+  margin-bottom: 16px;
+
+  h2 {
+    margin: 4px 0 0;
+    color: #ffffff;
+    font-family: var(--gcs-display-font);
+    font-size: 22px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+}
+
+.empty-parts {
+  margin: 0;
+  color: rgba(228, 225, 238, 0.5);
+  font-size: 14px;
+}
+
+.parts-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.part-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(228, 225, 238, 0.08);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.part-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.part-name {
+  margin: 0;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+  font-family: var(--gcs-display-font);
+}
+
+.part-type {
+  margin: 0;
+  color: #71717a;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.part-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.qty {
+  color: rgba(228, 225, 238, 0.55);
+  font-size: 12px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.part-price strong {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.total-section {
+  background: rgba(24, 24, 27, 0.85);
+  border: 1px solid rgba(225, 6, 0, 0.4);
+  border-radius: 8px;
+  padding: 18px 24px;
+  margin-bottom: 24px;
+}
+
+.total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  span {
+    color: #a1a1aa;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  strong {
+    color: #e10600;
+    font-family: var(--gcs-display-font);
+    font-size: 28px;
+    font-weight: 900;
+  }
+}
