@@ -2,7 +2,10 @@
 
 <ion-content [fullscreen]="true" class="detail-shell">
   <main class="detail-layout">
-    <app-loading-spinner *ngIf="loading" label="Cargando coche..."></app-loading-spinner>
+    <app-loading-spinner
+      *ngIf="loading"
+      label="Cargando coche..."
+    ></app-loading-spinner>
 
     <app-empty-state
       *ngIf="error && !loading"
@@ -44,15 +47,27 @@
 
           <div class="price-block">
             <span class="price-label">Precio base</span>
-            <span class="price-value">{{ car.precioBase | number:'1.0-0' }} €</span>
+            <span class="price-value"
+              >{{ car.precioBase | number:'1.0-0' }} €</span
+            >
           </div>
 
           <div class="detail-actions">
-            <ion-button expand="block" class="cta-btn" (click)="personalize()" [disabled]="duplicating">
+            <ion-button
+              expand="block"
+              class="cta-btn"
+              (click)="personalize()"
+              [disabled]="duplicating"
+            >
               <app-loading-spinner *ngIf="duplicating"></app-loading-spinner>
               <span *ngIf="!duplicating">Personalizar</span>
             </ion-button>
-            <ion-button expand="block" fill="outline" class="secondary-btn" routerLink="/catalogo">
+            <ion-button
+              expand="block"
+              fill="outline"
+              class="secondary-btn"
+              routerLink="/catalogo"
+            >
               Volver al catalogo
             </ion-button>
           </div>
@@ -85,25 +100,34 @@
             message="Se la primera persona en valorar este coche."
           ></app-empty-state>
 
-          <div class="reviews-list" *ngIf="!reviewsLoading && reviews.length > 0">
+          <div
+            class="reviews-list"
+            *ngIf="!reviewsLoading && reviews.length > 0"
+          >
             <article class="review-card" *ngFor="let review of reviews">
               <div class="review-head">
                 <strong>{{ review.usuarioNombre }}</strong>
                 <span class="stars">{{ getStars(review.puntuacion) }}</span>
               </div>
               <p class="comment">{{ review.comentario }}</p>
-              <p class="timestamp">{{ review.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
+              <p class="timestamp">
+                {{ review.createdAt | date:'dd/MM/yyyy HH:mm' }}
+              </p>
             </article>
           </div>
         </article>
 
-        <article class="reviews-panel form-panel" *ngIf="currentUser?.rol === 'CLIENTE'">
+        <article class="reviews-panel form-panel" *ngIf="currentUser">
           <p class="kicker">Tu opinion</p>
           <h2>Publicar resenia</h2>
 
           <ion-item lines="none">
             <ion-label position="stacked">Puntuacion</ion-label>
-            <ion-select [(ngModel)]="puntuacion" name="puntuacion" interface="popover">
+            <ion-select
+              [(ngModel)]="puntuacion"
+              name="puntuacion"
+              interface="popover"
+            >
               <ion-select-option [value]="1">1 estrella</ion-select-option>
               <ion-select-option [value]="2">2 estrellas</ion-select-option>
               <ion-select-option [value]="3">3 estrellas</ion-select-option>
@@ -127,7 +151,11 @@
           <p class="feedback error" *ngIf="formError">{{ formError }}</p>
           <p class="feedback success" *ngIf="formSuccess">{{ formSuccess }}</p>
 
-          <ion-button expand="block" (click)="publishReview()" [disabled]="submitLoading">
+          <ion-button
+            expand="block"
+            (click)="publishReview()"
+            [disabled]="submitLoading"
+          >
             {{ submitLoading ? 'Publicando...' : 'Publicar resenia' }}
           </ion-button>
         </article>
