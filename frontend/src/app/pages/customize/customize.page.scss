@@ -8,7 +8,6 @@
   margin: 0 auto;
 }
 
-// ── Page heading ──────────────────────────────────────
 .page-heading {
   margin-bottom: 1rem;
 
@@ -40,7 +39,6 @@
   border: 1px solid #2a2a2a;
 }
 
-// ── Segment tabs ──────────────────────────────────────
 ion-segment {
   --background: #1a1a1a;
   margin-bottom: 1.5rem;
@@ -58,7 +56,6 @@ ion-segment-button {
   letter-spacing: 1px;
 }
 
-// ── Parts catalog section ─────────────────────────────
 .parts-catalog {
   margin-bottom: 1.5rem;
 
@@ -84,21 +81,39 @@ ion-segment-button {
   gap: 1rem;
 }
 
-// ── Part card ─────────────────────────────────────────
 .part-card {
   background: #1a1a1a;
   border: 1px solid #2a2a2a;
   border-radius: 12px;
   padding: 1rem;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 1rem;
 
-  &:hover {
-    border-color: #e10600;
-    box-shadow: 0 0 20px rgba(225, 6, 0, 0.08);
-  }
+  .price-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-  &.installed {
-    border-left: 3px solid #22c55e;
+    span {
+      color: #888;
+      font-size: 0.85rem;
+    }
+
+    strong {
+      color: #e10600;
+      font-size: 1.1rem;
+    }
+
+    transition: border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+    &:hover {
+      border-color: #e10600;
+      box-shadow: 0 0 20px rgba(225, 6, 0, 0.08);
+    }
+
+    &.installed {
+      border-left: 3px solid #22c55e;
+    }
   }
 }
 
@@ -131,7 +146,6 @@ ion-segment-button {
   line-height: 1.4;
 }
 
-// ── Tech specs ────────────────────────────────────────
 .tech-specs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -181,13 +195,12 @@ ion-segment-button {
   flex-shrink: 0;
 }
 
-// ── Config summary ────────────────────────────────────
 .config-summary {
   background: #1a1a1a;
   border: 1px solid #2a2a2a;
   border-radius: 12px;
   padding: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 
   h2 {
     color: #fff;
@@ -195,6 +208,13 @@ ion-segment-button {
     font-size: 1.15rem;
     font-weight: 700;
     margin: 0 0 1rem;
+  }
+
+  ion-item {
+    --background: transparent;
+    --color: #fff;
+    --border-color: #333;
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -265,7 +285,6 @@ ion-segment-button {
   }
 }
 
-// ── Form card (kept from original) ───────────────────
 .form-card {
   background: #1a1a1a;
   border: 1px solid #2a2a2a;
@@ -277,6 +296,21 @@ ion-segment-button {
     color: #fff;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.1rem;
+    margin: 0 0 0.75rem;
+  }
+
+  p {
+    color: #b0b0b0;
+    font-size: 0.85rem;
+  }
+
+  .part-item {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 0.9rem;
     font-weight: 700;
     margin: 0 0 1rem;
   }
@@ -289,14 +323,79 @@ ion-segment-button {
   }
 }
 
-// ── Error ─────────────────────────────────────────────
 .error {
   color: #ff4d4d;
   margin-bottom: 1rem;
   font-size: 0.85rem;
 }
 
-// ── Buttons ───────────────────────────────────────────
 ion-button {
   --border-radius: 8px;
+}
+
+.buy-button {
+  margin-bottom: 0.75rem;
+}
+
+.request-card {
+  background: rgba(26, 28, 0, 0.6);
+  border: 1px solid rgba(218, 238, 0, 0.25);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(6px);
+}
+
+.request-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 1rem;
+}
+
+.request-tag {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  color: #daee00;
+  letter-spacing: 0.15em;
+}
+
+.request-subtitle {
+  font-size: 12px;
+  color: rgba(218, 238, 0, 0.6);
+  letter-spacing: 0.05em;
+}
+
+.request-item {
+  --background: rgba(26, 28, 0, 0.4);
+  --color: #e4e1ee;
+  --border-color: rgba(218, 238, 0, 0.2);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+
+  ion-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    color: #daee00 !important;
+    letter-spacing: 0.12em !important;
+  }
+}
+
+.request-error {
+  color: #ef4444;
+  font-size: 13px;
+  margin: 0 0 0.5rem;
+}
+
+.request-btn {
+  --background: rgba(218, 238, 0, 0.15);
+  --background-hover: rgba(218, 238, 0, 0.25);
+  --color: #daee00;
+  --border-color: rgba(218, 238, 0, 0.4);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  font-size: 13px;
 }
